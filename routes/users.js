@@ -36,7 +36,7 @@ router.post('/', function(req, res) {
         isAdmin: isAdmin
       });
       newUser.save()
-      .then(user => res.status(200).json({ user: user, message: 'Cont creat cu succes!' }))
+      .then(newUser => res.status(200).json({ user: newUser, message: 'Cont creat cu succes!' }))
       .catch(err => res.status(500).json({ error: err, message: 'Contul nu a putut fi creat!' }));
     });
   })

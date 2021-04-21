@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var propertiesRouter = require('./routes/properties');
 var adminRouter = require('./routes/admin');
 
 var app = express();
@@ -27,6 +28,7 @@ app.use(bodyParser.json());
 
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/properties', propertiesRouter);
 app.use('/api/admin', adminRouter);
 
 module.exports = app;
