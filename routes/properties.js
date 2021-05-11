@@ -10,6 +10,12 @@ router.get('/', function(req, res) {
   .then(properties => res.json(properties));
 });
 
+router.get('/:id', function(req, res) {
+  Property.findById(req.params.id)
+  .then(property => res.json(property))
+  .catch(err => res.status(500).json({error: err}));
+});
+
 /* POST -> create a new property */
 router.post('/', function(req, res) {
   let name = req.body.name;

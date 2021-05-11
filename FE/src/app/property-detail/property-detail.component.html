@@ -1,0 +1,28 @@
+<div *ngIf="property" class="property">
+  <div class="card" style="width: 18rem;">
+    <div class="card-header">
+      <h3 class="card-title">{{ property.name | uppercase }}</h3>
+    </div>
+    <div class="card-body">
+      <p class="card-subtitle mb-2 text-muted">{{ property.description }}</p>
+      <h6 class="card-text">Scor {{ property.score }}</h6>
+      <h6 class="card-text">Adresa {{ property.address }}</h6>
+      <h6 class="card-text">Tara {{ property.country }}</h6>
+      <h6 class="card-text">Oras {{ property.city }}</h6>
+      <h6 class="card-text">Pret per noapte {{ property.pricePerNight }}</h6>
+      <h6 class="card-text">Numar adulti {{ property.adultsNumber }}</h6>
+      <h6 class="card-text">Numar camere {{ property.roomsNumber }}</h6>
+      <h6 class="card-text">Dimensiune {{ property.dimmension }} m2</h6>
+      <h6 class="card-text">Distanta fata de centru {{ property.distanceFromCenter }} m</h6>
+      <h6 class="card-text">Balcon {{ property.balcony }}</h6>
+      <h6 class="card-text">Baie privata {{ property.privateBathroom }}</h6>
+      <h6 class="card-text">Aer conditionat {{ property.airConditioning }}</h6>
+      <h6 class="card-text">Parcare gratuita {{ property.freeParking }}</h6>
+      <h6 class="card-text">Mic dejun inclus {{ property.breakfastIncluded }}</h6>
+      <h6 class="card-text">Acceptare animale companie {{ property.petsAllowed }}</h6>
+      <button type="button" class="btn btn-primary">Rezerva acum!</button>
+    </div>
+  </div>
+</div>
+
+<app-navbar></app-navbar>

@@ -1,0 +1,32 @@
+<div *ngIf="user" class="account">
+  <div class="card" style="width: 28rem;">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a class="nav-link active">Profil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="">Rezervarile mele</a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body">
+      <h3 class="card-subtitle">{{ user.firstName | uppercase }} {{ user.lastName | uppercase }}</h3>
+      <div>
+        <span>Email: {{ user.email }}</span>
+      </div>
+      <div>
+        <label for="user-fn">First name: </label>
+        <input id="user-fn" [(ngModel)]="user.firstName" placeholder="User first name">
+      </div>
+      <div>
+        <label for="user-ln">Last name: </label>
+        <input id="user-ln" [(ngModel)]="user.lastName" placeholder="User last name">
+      </div>
+      <a class="nav-link" href="">Change your password</a>
+      <button type="button" class="btn-save btn btn-warning">Actualizeaza</button>
+    </div>
+  </div>
+</div>
+
+<app-navbar></app-navbar>

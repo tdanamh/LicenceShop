@@ -1,0 +1,9 @@
+<h2>Properties available</h2>
+
+<div class="properties-list">
+  <a *ngFor="let property of properties" routerLink = "/properties/{{property._id}}">
+    {{property.name}}
+  </a>
+</div>
+
+<app-navbar></app-navbar>

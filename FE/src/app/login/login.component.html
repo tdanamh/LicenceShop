@@ -1,0 +1,26 @@
+<div class="login-container">
+  <h2>Login</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label class="col-sm-2 col-form-label col-form-label-lg">
+        Adresa de Email:
+        <input class="form-control" type="text" formControlName="email" required placeholder="Introduceti email...">
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 col-form-label col-form-label-lg">
+        Parola:
+        <input class="form-control" type="password" formControlName="password" required placeholder="Introduceti parola...">
+      </label>
+    </div>
+
+    <div *ngIf="message" style="color: red">
+      {{ message }}
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">Login</button>
+  </form>
+</div>
+<app-navbar></app-navbar>

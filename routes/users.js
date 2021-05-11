@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const jwtKey = require('../config/keys').JWT_KEY;
+const checkAuthentication = require('../middleware/check-authentication');
 
 const router = express.Router();
 const saltRounds = 10;
@@ -114,6 +115,15 @@ router.post('/login', function(req, res) {
     });
   })
   .catch(err => res.status(500).json({ error: err }));
+});
+
+router.get('/check-authentication', checkAuthentication, function(req, res) {
+  return res.status(200).json({ message: 'Autentificare valida!' })
+});
+
+router.get('/current-user', checkAuthentication, function(req, res) {
+  let decoded = jwt.decode(req.headers.authorization.split(" ")[1]);
+  return res.status(200).json({ currentUser: decoded });
 });
 
 module.exports = router;
