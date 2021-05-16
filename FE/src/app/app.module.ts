@@ -14,6 +14,14 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PropertiesComponent } from './properties/properties.component';
 import { LoginComponent } from './login/login.component';
 import { PropertyDetailComponent } from './property-detail/property-detail.component';
+import { BookPropertyComponent } from './book-property/book-property.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateModule} from '@angular/material-moment-adapter';
 
 export function tokenGetter() {
   return localStorage.getItem('AUTH');
@@ -27,7 +35,8 @@ export function tokenGetter() {
     NavbarComponent,
     PropertiesComponent,
     LoginComponent,
-    PropertyDetailComponent
+    PropertyDetailComponent,
+    BookPropertyComponent
   ],
   imports: [
     BrowserModule,
@@ -42,8 +51,16 @@ export function tokenGetter() {
       }
     }),
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatMomentDateModule,
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

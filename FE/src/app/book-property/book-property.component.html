@@ -1,0 +1,35 @@
+<div *ngIf="property" class="book-property">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Rezervare proprietate</h3>
+    </div>
+    <div class="card-body">
+      <h4 class="card-text text-muted">Nume proprietate {{ property.name }}</h4>
+      <h4 class="card-text text-muted">Adresa {{ property.address }}</h4>
+      <h4 class="card-text text-muted">Tara {{ property.country }}</h4>
+      <h4 class="card-text text-muted">Oras {{ property.city }}</h4>
+      <h4 class="card-text text-muted">Pret per noapte {{ property.pricePerNight }}</h4>
+      <div class="my-date-picker">
+        <form [formGroup]="range" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <mat-form-field appearance="fill">
+              <mat-label>Selectati perioada inchirierii</mat-label>
+              <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate formControlName="start" placeholder="Start date">
+                <input matEndDate formControlName="end" placeholder="End date">
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+              <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+              <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-success" type="submit">Submit</button>
+          </div> 
+        </form>
+      </div>           
+    </div>
+  </div>
+</div>
+<app-navbar></app-navbar>

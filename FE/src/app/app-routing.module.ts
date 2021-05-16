@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { PropertiesComponent } from './properties/properties.component';
 import { PropertyDetailComponent } from './property-detail/property-detail.component';
+import { BookPropertyComponent } from './book-property/book-property.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'account', component: AccountComponent, canActivate: [AuthenticateGuard] },
   { path: 'properties', component: PropertiesComponent },
   { path: 'properties/:id', component: PropertyDetailComponent },
+  { path: 'bookProperty/:propertyId', component: BookPropertyComponent },
 ];
 
 @NgModule({
