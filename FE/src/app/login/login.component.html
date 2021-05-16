@@ -1,26 +1,23 @@
 <div class="login-container">
-  <h2>Login</h2>
-
+  <h1>Login</h1>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label class="col-sm-2 col-form-label col-form-label-lg">
         Adresa de Email:
-        <input class="form-control" type="text" formControlName="email" required placeholder="Introduceti email...">
+        <input class="form-control" type="email" formControlName="email" required placeholder="Introduceti email...">
       </label>
     </div>
-
     <div class="form-group">
       <label class="col-sm-2 col-form-label col-form-label-lg">
         Parola:
         <input class="form-control" type="password" formControlName="password" required placeholder="Introduceti parola...">
       </label>
     </div>
-
-    <div *ngIf="message" style="color: red">
-      {{ message }}
+    <div *ngIf="message" class="form-group">
+      <h3 style="color: red">{{ message }}</h3>
     </div>
-
     <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">Login</button>
   </form>
+  <a class="nav-link" routerLink="/register">Creeaza cont</a>
 </div>
 <app-navbar></app-navbar>
