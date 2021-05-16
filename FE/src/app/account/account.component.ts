@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 import { User } from '../user';
 
@@ -14,7 +14,8 @@ export class AccountComponent implements OnInit {
   user!: User;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -27,5 +28,10 @@ export class AccountComponent implements OnInit {
         console.log(err);
       }
     )
+  }
+
+  logOut(): void {
+    localStorage.setItem('AUTH', '');
+    this.router.navigateByUrl('/login');
   }
 }
