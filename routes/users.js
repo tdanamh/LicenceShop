@@ -37,7 +37,16 @@ router.post('/', function(req, res) {
         isAdmin: isAdmin
       });
       newUser.save()
-      .then(newUser => res.status(200).json({ user: newUser, message: 'Cont creat cu succes!' }))
+      .then(newUser =>  {
+        const token = jwt.sign({
+          userId: newUser._id,
+          email: newUser.email,
+          firstName: newUser.firstName,
+          lastName: newUser.lastName,
+          isAdmin: newUser.isAdmin
+        }, jwtKey, { expiresIn: "1h" });
+        res.status(200).json({ token: token, message: 'Cont creat cu succes!' })
+      })
       .catch(err => res.status(500).json({ error: err, message: 'Contul nu a putut fi creat!' }));
     });
   })
