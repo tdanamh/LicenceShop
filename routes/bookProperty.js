@@ -14,6 +14,16 @@ router.get('/', function(req, res) {
   .catch(err => res.status(500).json({ err: err }));
 });
 
+router.get('/byUserId', checkAuthentication, function(req, res) {
+  let decoded = jwt.decode(req.headers.authorization.split(" ")[1]);
+  let userId = decoded.userId;
+  
+  BookProperty.find({ userId: userId })
+  .populate({ path: 'propertyId', model: Property })
+  .then(bookProperties => res.status(200).json({ myBookings: bookProperties }))
+  .catch(err => res.status(500).json({ error: err }));
+});
+
 router.post('/', checkAuthentication, function(req, res) {
   let decoded = jwt.decode(req.headers.authorization.split(" ")[1]);
 

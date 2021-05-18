@@ -1,25 +1,14 @@
 <app-navbar></app-navbar>
 <div *ngIf="user" class="account-container">
-  <div class="card" style="width: 28rem;">
-    <div class="card-header">
-      <ul class="nav nav-tabs card-header-tabs">
-        <li class="nav-item">
-          <a class="nav-link active">Profilul meu</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">Rezervarile mele</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="logOut()">Log out</a>
-        </li>
-      </ul>
-    </div>
+  <div class="card">
     <div class="card-body">
+      <h2>Profilul meu</h2>
       <h3 class="card-subtitle">{{ user.firstName | uppercase }} {{ user.lastName | uppercase }}</h3>
       <div>
         <span>Email: {{ user.email }}</span>
       </div>
-      <a class="nav-link" href="">Schimba parola</a>
+      <button (click)="toggleMyBookings()" class="btn btn-light">Rezervarile mele</button>
+      <button class="btn btn-light">Schimba parola</button>
       <form [formGroup]="userDataForm" (ngSubmit)="changeData()">
         <div class="form-group">
           <label class="col-form-label">
@@ -33,8 +22,26 @@
             <input class="form-control" [(ngModel)]="user.lastName" type="text" formControlName="lastName">
           </label>
         </div>
-        <button type="submit" class="btn btn-warning change-user">Actualizeaza date</button>
-      </form>    
+        <button type="submit" class="btn btn-success">Actualizeaza date</button>
+      </form>
+      <button class="btn btn-danger" (click)="logOut()">Iesi din cont</button>
+
+      <div *ngIf="loadMyBookings" class="my-bookings-container">
+
+        <div *ngIf="myBookings.length == 0">
+          <h2>Nu aveti rezervari inca!</h2>
+        </div>
+
+        <div *ngFor="let booking of myBookings" class="card">
+          <div class="card-body">
+            <h2>Rezervarea cu id-ul {{ booking._id }}</h2>
+            <h2>Proprietatea {{ booking.propertyId.name }}</h2>
+            <h2>Data de start {{ booking.startDate }}</h2>
+            <h2>Data de incheiere {{ booking.endDate }}</h2>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>
