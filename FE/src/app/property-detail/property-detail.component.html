@@ -1,26 +1,26 @@
 <app-navbar></app-navbar>
-<div *ngIf="property" class="property">
-  <div class="card" style="width: 18rem;">
+<div *ngIf="property" class="property-container">
+  <div class="card">
     <div class="card-header">
       <h3 class="card-title">{{ property.name | uppercase }}</h3>
     </div>
     <div class="card-body">
-      <p class="card-subtitle mb-2 text-muted">{{ property.description }}</p>
-      <h6 class="card-text">Scor {{ property.score }}</h6>
-      <h6 class="card-text">Adresa {{ property.address }}</h6>
-      <h6 class="card-text">Tara {{ property.country }}</h6>
-      <h6 class="card-text">Oras {{ property.city }}</h6>
-      <h6 class="card-text">Pret per noapte {{ property.pricePerNight }}</h6>
-      <h6 class="card-text">Numar adulti {{ property.adultsNumber }}</h6>
-      <h6 class="card-text">Numar camere {{ property.roomsNumber }}</h6>
-      <h6 class="card-text">Dimensiune {{ property.dimmension }} m2</h6>
-      <h6 class="card-text">Distanta fata de centru {{ property.distanceFromCenter }} m</h6>
-      <h6 class="card-text">Balcon {{ property.balcony }}</h6>
-      <h6 class="card-text">Baie privata {{ property.privateBathroom }}</h6>
-      <h6 class="card-text">Aer conditionat {{ property.airConditioning }}</h6>
-      <h6 class="card-text">Parcare gratuita {{ property.freeParking }}</h6>
-      <h6 class="card-text">Mic dejun inclus {{ property.breakfastIncluded }}</h6>
-      <h6 class="card-text">Acceptare animale companie {{ property.petsAllowed }}</h6>
+      <h3 class="card-subtitle mb-2 text-muted">{{ property.description }}</h3>
+      <h4>Scor {{ property.score }}</h4>
+      <h4>Adresa {{ property.address }}</h4>
+      <h4>Tara {{ property.country }}</h4>
+      <h4>Oras {{ property.city }}</h4>
+      <h4>Pret per noapte {{ property.pricePerNight }}</h4>
+      <h4>Numar adulti {{ property.adultsNumber }}</h4>
+      <h4>Numar camere {{ property.roomsNumber }}</h4>
+      <h4>Dimensiune {{ property.dimmension }} m2</h4>
+      <h4>Distanta fata de centru {{ property.distanceFromCenter }} m</h4>
+      <h4>Balcon {{ property.balcony }}</h4>
+      <h4>Baie privata {{ property.privateBathroom }}</h4>
+      <h4>Aer conditionat {{ property.airConditioning }}</h4>
+      <h4>Parcare gratuita {{ property.freeParking }}</h4>
+      <h4>Mic dejun inclus {{ property.breakfastIncluded }}</h4>
+      <h4>Acceptare animale companie {{ property.petsAllowed }}</h4>
       <button routerLink="/bookProperty/{{property._id}}" type="button" class="btn btn-primary">Rezerva acum!</button>
     </div>
   </div>

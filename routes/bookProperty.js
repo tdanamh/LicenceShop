@@ -10,7 +10,7 @@ const BookProperty = require('../models/BookProperty');
 router.get('/', function(req, res) {
   BookProperty.find()
   .exec()
-  .then(bookProperties => { return res.json(bookProperties)})
+  .then(bookProperties => { return res.json({ bookings: bookProperties })})
   .catch(err => res.status(500).json({ err: err }));
 });
 

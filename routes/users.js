@@ -12,7 +12,7 @@ const User = require('../models/User');
 /* GET -> receive all users */
 router.get('/', function(req, res) {
   User.find()
-  .then(users => res.json(users));
+  .then(users => res.json({ users: users }));
 });
 
 /* POST -> create a new user */
