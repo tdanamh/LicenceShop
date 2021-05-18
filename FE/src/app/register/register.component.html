@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="register-container">
   <h1>Creeaza cont nou</h1>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
@@ -30,6 +31,5 @@
     </div>
     <button class="btn btn-primary" type="submit" [disabled]="!registerForm.valid">Creeaza</button>
   </form>
-  <a class="nav-link" routerLink="/login">Utilizator existent</a>
+  <a class="nav-link" routerLink="/login">Esti un utilizator existent?</a>
 </div>
-<app-navbar></app-navbar>

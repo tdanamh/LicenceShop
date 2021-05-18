@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 import { User } from '../user';
 
@@ -12,6 +14,11 @@ import { User } from '../user';
 export class AccountComponent implements OnInit {
 
   user!: User;
+
+  userDataForm = new FormGroup({
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+  });
 
   constructor(
     private http: HttpClient,
@@ -33,5 +40,39 @@ export class AccountComponent implements OnInit {
   logOut(): void {
     localStorage.setItem('AUTH', '');
     this.router.navigateByUrl('/login');
+  }
+
+  changeData(): void {
+    const firstName = this.userDataForm.value.firstName;
+    const lastName = this.userDataForm.value.lastName;
+    this.http.put<any>('/api/users', {
+      firstName: firstName,
+      lastName: lastName
+    }).subscribe(
+      data => {
+        this.user = data.user;
+        Swal.fire({
+          title: 'Succes',
+          text: data.message,
+          icon: 'success',
+          focusConfirm: true,
+          confirmButtonText: 'OK'
+        });
+      },
+      err => {
+        Swal.fire({
+          title: 'Eroare',
+          text: err.error.message,
+          icon: 'error',
+          focusConfirm: true,
+          confirmButtonText: 'OK'
+        })
+        .then((result) => {
+          if(result.isConfirmed) {
+            this.router.navigateByUrl('/account');
+          }
+        });
+      }
+    )
   }
 }
