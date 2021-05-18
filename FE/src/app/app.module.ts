@@ -23,6 +23,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateModule} from '@angular/material-moment-adapter';
 import { RegisterComponent } from './register/register.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { AdminComponent } from './admin/admin.component';
 
 export function tokenGetter() {
   return localStorage.getItem('AUTH');
@@ -38,7 +40,9 @@ export function tokenGetter() {
     LoginComponent,
     PropertyDetailComponent,
     BookPropertyComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminLoginComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
