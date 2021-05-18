@@ -7,6 +7,9 @@ module.exports = (req, res, next) => {
   }
   try {
     decoded = jwt.verify(req.headers.authorization.split(" ")[1], jwtKey);
+    if (decoded.isAdmin) {
+      return res.status(401).json({ message: 'Autentificare nereusita!' });
+    }
   } catch(err) {
     return res.status(401).json({ message: 'Autentificare nereusita!' });
   }

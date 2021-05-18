@@ -8,7 +8,6 @@
         <span>Email: {{ user.email }}</span>
       </div>
       <button (click)="toggleMyBookings()" class="btn btn-light">Rezervarile mele</button>
-      <button class="btn btn-light">Schimba parola</button>
       <form [formGroup]="userDataForm" (ngSubmit)="changeData()">
         <div class="form-group">
           <label class="col-form-label">

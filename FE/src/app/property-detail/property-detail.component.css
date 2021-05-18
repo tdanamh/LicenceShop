@@ -6,23 +6,7 @@
   text-align: center;
 }
 
-.property {
-  padding: 0;
+.property-container {
+  padding: 1rem;
   margin: auto;
-  max-width: 1000px;
-
-  /* flexbox */
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-content: flex-start;
-  align-items: flex-start;
-}
-
-@media (min-width: 600px) {
-  a {
-    width: 18%;
-    box-sizing: content-box;
-  }
 }
