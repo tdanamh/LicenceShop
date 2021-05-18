@@ -54,28 +54,24 @@ router.post('/', function(req, res) {
 });
 
 /* PUT -> change firstName/lastName */
-router.put('/', function(req, res) {
-  let email = req.body.email;
-  let password = req.body.password;
+router.put('/', checkAuthentication, function(req, res) {
+  let decoded = jwt.decode(req.headers.authorization.split(" ")[1]);
+
+  let userId = decoded.userId;
   let firstName = req.body.firstName;
   let lastName = req.body.lastName;
-  User.find({ email: email })
+  
+  User.find({ _id: userId })
   .exec()
   .then(user => {
     if (user.length === 0) {
       return res.status(404).json({ message: 'Cont inexistent!' });
     }
-    bcrypt.compare(password, user[0].password, function(err, result) {
-      if (result === true) {
-        user[0].firstName = firstName;
-        user[0].lastName = lastName;
-        user[0].save()
-        .then(updatedUser => res.status(200).json({ user: updatedUser, message: 'Cont modificat cu succes!' }))
-        .catch(err => res.status(500).json({ error: err, message: 'Contul nu a putut fi modificat!' }));
-      } else {
-        return res.status(401).json({ message: 'Credentiale gresite!' });
-      }
-    });
+    user[0].firstName = firstName;
+    user[0].lastName = lastName;
+    user[0].save()
+    .then(updatedUser => res.status(200).json({ user: updatedUser, message: 'Cont modificat cu succes!' }))
+    .catch(err => res.status(500).json({ error: err, message: 'Contul nu a putut fi modificat!' }));
   })
   .catch(err => res.status(500).json({ error: err }));
 })
@@ -132,7 +128,11 @@ router.get('/check-authentication', checkAuthentication, function(req, res) {
 
 router.get('/current-user', checkAuthentication, function(req, res) {
   let decoded = jwt.decode(req.headers.authorization.split(" ")[1]);
-  return res.status(200).json({ currentUser: decoded });
+  let userId = decoded.userId;
+  User.findById(userId)
+  .exec()
+  .then(user => res.status(200).json({ currentUser: user }))
+  .catch(err => res.status(500).json({ error: err }));
 });
 
 module.exports = router;

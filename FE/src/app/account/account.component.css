@@ -1,17 +1,5 @@
-.card-header {
-  text-align: center;
-}
-
-.card-body {
-  text-align: center;
-}
-
-.btn-save {
-  margin-top: 2rem;
-}
-
-.account {
-  padding: 0;
+.account-container {
+  padding: 2rem;
   margin: auto;
   max-width: 1000px;
 

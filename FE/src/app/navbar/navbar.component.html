@@ -1,15 +1,28 @@
-<div class="my-navbar">
-  <nav class="navbar fixed-bottom navbar-light bg-light">
-    <div routerLink="/" class="float-start">
-      {{ title }}
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">{{ title }}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/account">
+            <img routerLink="/account" src="../../assets/account.png" alt="Account">
+            Account
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/properties">
+            <img routerLink="/properties" src="../../assets/properties.png" alt="Properties">
+            Properties
+          </a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
     </div>
-    <div class="float-end">
-      <img routerLink="/account" src="../../assets/account.png" alt="Login">
-      <span routerLink="/account">Account</span>
-    </div>
-    <div class="float-end">
-      <img routerLink="/properties" src="../../assets/properties.png" alt="Properties">
-      <span routerLink="/properties">Properties</span>
-    </div>
-  </nav>
-</div>
+  </div>
+</nav>
