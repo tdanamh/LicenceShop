@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 import { User } from '../user';
+import { BookProperty } from '../bookProperty';
 
 @Component({
   selector: 'app-account',
@@ -19,6 +20,10 @@ export class AccountComponent implements OnInit {
     firstName: new FormControl(''),
     lastName: new FormControl(''),
   });
+
+  loadMyBookings: Boolean = false;
+
+  myBookings!: Array<BookProperty>;
 
   constructor(
     private http: HttpClient,
@@ -35,6 +40,19 @@ export class AccountComponent implements OnInit {
         console.log(err);
       }
     )
+  }
+
+  toggleMyBookings() {
+    this.http.get<any>('/api/bookProperty/byUserId')
+    .subscribe(
+      data => {
+        this.myBookings = data.myBookings;
+      },
+      err => {
+        console.log(err);
+      }
+    )
+    this.loadMyBookings = !this.loadMyBookings;
   }
 
   logOut(): void {
