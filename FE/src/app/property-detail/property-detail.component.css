@@ -1,12 +1,18 @@
-.card-header {
-  text-align: center;
+.field-name {
+  width: 10em;
+  display: inline-block;
+  color: gray;
 }
 
-.card-body {
-  text-align: center;
+.field-name,
+.field-value {
+  font-size: 15px;
+}
+
+.card {
+  margin-bottom: 1em
 }
 
 .property-container {
-  padding: 1rem;
-  margin: auto;
+  margin: 1em
 }

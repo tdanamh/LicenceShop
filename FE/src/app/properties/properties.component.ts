@@ -20,6 +20,8 @@ export class PropertiesComponent implements OnInit {
 
   getProperties(): void {
     this.propertyService.getProperties()
-    .subscribe(properties => this.properties = properties);
+    .subscribe(properties => {
+      this.properties = properties
+    });
   }
 }

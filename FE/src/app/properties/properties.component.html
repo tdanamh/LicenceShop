@@ -1,9 +1,22 @@
 <app-navbar></app-navbar>
-
-<h2>Properties available</h2>
-
-<div class="properties-list">
-  <a *ngFor="let property of properties" routerLink = "/properties/{{property._id}}">
-    {{property.name}}
-  </a>
+<div class="row property-container" *ngFor="let property of properties">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="avatar"></div>
+        <div class="property-info">
+          <span class="property-name"><a [routerLink]= [property._id] class="card-title">{{property.name}}</a></span>
+          <div class="property-highlights">
+            <div class="property-highlight">
+              <li *ngIf="property.airConditioning">A/C</li>
+            </div>
+          </div>
+          <p class="card-text">{{property.description}}</p>
+        </div>
+      </div>
+      <div class="card-body property-price">
+        <p>{{property.pricePerNight | currency}}/noapte</p>
+      </div>
+    </div>
+  </div>
 </div>

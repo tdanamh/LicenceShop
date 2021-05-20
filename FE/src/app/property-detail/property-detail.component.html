@@ -1,27 +1,91 @@
 <app-navbar></app-navbar>
 <div *ngIf="property" class="property-container">
-  <div class="card">
+  <div class="card col-sm-9">
     <div class="card-header">
-      <h3 class="card-title">{{ property.name | uppercase }}</h3>
+      <span class="card-title">Images</span>
+    </div>
+    <div class="card-body">
+    </div>
+  </div>
+  <div class="card col-sm-9">
+    <div class="card-header">
+      <span class="card-title">{{ property.name | uppercase }}</span>
     </div>
     <div class="card-body">
       <h3 class="card-subtitle mb-2 text-muted">{{ property.description }}</h3>
-      <h4>Scor {{ property.score }}</h4>
-      <h4>Adresa {{ property.address }}</h4>
-      <h4>Tara {{ property.country }}</h4>
-      <h4>Oras {{ property.city }}</h4>
+      <p class="card-text">
+        <span class="field-name">Adresa:</span>
+        <span class="field-value">{{property.address}}&nbsp; {{property.city}}</span>
+      </p>
+      <p class="card-text">
+        <span class="field-name">Evaluari:</span>
+        <span class="field-value">{{ property.score }}</span>
+      </p>
+      <p class="card-text">
+        <span class="field-name">Tara:</span>
+        <span class="field-value">{{ property.country }}</span>
+      </p>
+      <p class="card-text">
+        <span class="field-name">$</span>
+        <span class="field-value">{{ property.pricePerNight | currency}}</span>
+      </p>
+      <!-- 
       <h4>Pret per noapte {{ property.pricePerNight }}</h4>
       <h4>Numar adulti {{ property.adultsNumber }}</h4>
       <h4>Numar camere {{ property.roomsNumber }}</h4>
       <h4>Dimensiune {{ property.dimmension }} m2</h4>
       <h4>Distanta fata de centru {{ property.distanceFromCenter }} m</h4>
-      <h4>Balcon {{ property.balcony }}</h4>
-      <h4>Baie privata {{ property.privateBathroom }}</h4>
-      <h4>Aer conditionat {{ property.airConditioning }}</h4>
-      <h4>Parcare gratuita {{ property.freeParking }}</h4>
-      <h4>Mic dejun inclus {{ property.breakfastIncluded }}</h4>
-      <h4>Acceptare animale companie {{ property.petsAllowed }}</h4>
-      <button routerLink="/bookProperty/{{property._id}}" type="button" class="btn btn-primary">Rezerva acum!</button>
+      <h4 *ngIf="property.balcony==true">Balcon Da</h4>
+      <h4 *ngIf="property.balcony==false">Balcon Nu</h4>
+      <h4 *ngIf="property.privateBathroom==true">Baie privata Da</h4>
+      <h4 *ngIf="property.privateBathroom==false">Baie privata Nu</h4>
+      <h4 *ngIf="property.airConditioning==true">Aer conditionat Da</h4>
+      <h4 *ngIf="property.airConditioning==false">Aer conditionat Nu</h4>
+      <h4 *ngIf="property.freeParking==true">Parcare gratuita Da</h4>
+      <h4 *ngIf="property.freeParking==false">Parcare gratuita Nu</h4>
+      <h4 *ngIf="property.breakfastIncluded==true">Mic dejun inclus Da</h4>
+      <h4 *ngIf="property.breakfastIncluded==false">Mic dejun inclus Nu</h4>
+      <h4 *ngIf="property.petsAllowed==true">Acceptare animale de companie Da</h4>
+      <h4 *ngIf="property.petsAllowed==false">Acceptare animale de companie Nu</h4>
+      <button routerLink="/bookProperty/{{property._id}}" type="button" class="btn btn-primary">Rezerva acum!</button> -->
     </div>
   </div>
+  <div class="card col-sm-9">
+    <div class="card-header">
+      <span class="card-title">Facilities</span>
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+        <span class="field-name">Numar adulti:</span>
+        <span class="field-value">{{ property.adultsNumber }}</span>
+      </p>
+      <p class="card-text">
+        <span class="field-name">Numar camere:</span>
+        <span class="field-value">{{ property.roomsNumber }}</span>
+      </p>
+      <p class="card-text">
+        <span class="field-name">Dimensiune:</span>
+        <span class="field-value">{{ property.dimmension }}</span>
+      </p>
+      <p class="card-text">
+        <span class="field-name">Distanta fata de centru:</span>
+        <span class="field-value">{{ property.distanceFromCenter }}</span>
+      </p>
+      <p class="card-text">
+        <span class="field-name">Balcon:</span>
+        <span class="field-value">{{ property.balcony }}</span>
+      </p>
+      <!-- <h4 *ngIf="property.privateBathroom==true">Baie privata Da</h4>
+      <h4 *ngIf="property.privateBathroom==false">Baie privata Nu</h4>
+      <h4 *ngIf="property.airConditioning==true">Aer conditionat Da</h4>
+      <h4 *ngIf="property.airConditioning==false">Aer conditionat Nu</h4>
+      <h4 *ngIf="property.freeParking==true">Parcare gratuita Da</h4>
+      <h4 *ngIf="property.freeParking==false">Parcare gratuita Nu</h4>
+      <h4 *ngIf="property.breakfastIncluded==true">Mic dejun inclus Da</h4>
+      <h4 *ngIf="property.breakfastIncluded==false">Mic dejun inclus Nu</h4>
+      <h4 *ngIf="property.petsAllowed==true">Acceptare animale de companie Da</h4>
+      <h4 *ngIf="property.petsAllowed==false">Acceptare animale de companie Nu</h4> -->
+    </div>
+  </div>
+  <button routerLink="/bookProperty/{{property._id}}" type="button" class="btn btn-primary">Rezerva</button>
 </div>

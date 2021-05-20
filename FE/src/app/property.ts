@@ -9,13 +9,13 @@ export interface Property {
   adultsNumber: string;
   roomsNumber: string;
   dimmension: string;
-  balcony: string;
-  privateBathroom: string;
-  airConditioning: string;
-  freeParking: string;
-  breakfastIncluded: string;
-  petsAllowed: string;
-  distanceFromCenter: string;
-  score: string;
+  balcony: boolean;
+  privateBathroom: boolean;
+  airConditioning: boolean;
+  freeParking: boolean;
+  breakfastIncluded: boolean;
+  petsAllowed: boolean;
+  distanceFromCenter: number;
+  score: number;
   imagesPaths: string[];
 }

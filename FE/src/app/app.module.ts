@@ -25,6 +25,8 @@ import {MAT_MOMENT_DATE_ADAPTER_OPTIONS, MatMomentDateModule} from '@angular/mat
 import { RegisterComponent } from './register/register.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminComponent } from './admin/admin.component';
+import { MatIconModule } from '@angular/material/icon';
+
 
 export function tokenGetter() {
   return localStorage.getItem('AUTH');
@@ -63,6 +65,7 @@ export function tokenGetter() {
     MatFormFieldModule,
     MatInputModule,
     MatMomentDateModule,
+    MatIconModule
   ],
   providers: [
     { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }
