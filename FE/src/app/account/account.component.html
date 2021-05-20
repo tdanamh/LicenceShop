@@ -26,20 +26,17 @@
       <button class="btn btn-danger" (click)="logOut()">Iesi din cont</button>
 
       <div *ngIf="loadMyBookings" class="my-bookings-container">
-
         <div *ngIf="myBookings.length == 0">
           <h2>Nu aveti rezervari inca!</h2>
         </div>
-
         <div *ngFor="let booking of myBookings" class="card">
           <div class="card-body">
             <h2>Rezervarea cu id-ul {{ booking._id }}</h2>
             <h2>Proprietatea {{ booking.propertyId.name }}</h2>
-            <h2>Data de start {{ booking.startDate }}</h2>
-            <h2>Data de incheiere {{ booking.endDate }}</h2>
+            <h2>Data de start {{ booking.startDate | date: 'dd/MM/yyyy'}}</h2>
+            <h2>Data de incheiere {{ booking.endDate | date: 'dd/MM/yyyy'}}</h2>
           </div>
         </div>
-
       </div>
     </div>
   </div>
