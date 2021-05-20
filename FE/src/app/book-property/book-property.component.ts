@@ -22,6 +22,9 @@ export class BookPropertyComponent implements OnInit {
     end: new FormControl()
   });
 
+  minDate: Date = new Date();
+  maxDate: Date = new Date(new Date().getFullYear()+2, 0, 0);
+
   constructor(
     private route: ActivatedRoute,
     private propertyService: PropertyService,

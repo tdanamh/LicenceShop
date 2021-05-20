@@ -40,9 +40,6 @@ export class AccountComponent implements OnInit {
         console.log(err);
       }
     )
-  }
-
-  toggleMyBookings() {
     this.http.get<any>('/api/bookProperty/byUserId')
     .subscribe(
       data => {
@@ -52,6 +49,9 @@ export class AccountComponent implements OnInit {
         console.log(err);
       }
     )
+  }
+
+  toggleMyBookings() {
     this.loadMyBookings = !this.loadMyBookings;
   }
 
