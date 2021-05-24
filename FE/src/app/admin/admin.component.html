@@ -1,28 +1,30 @@
-<div class="d-flex align-items-start">
-  <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-    <button (click)="populateUsers()" class="nav-link active" id="v-pills-users-tab" data-bs-toggle="pill" data-bs-target="#v-pills-users" type="button" role="tab" aria-controls="v-pills-users" aria-selected="true">Utilizatori</button>
-    <button (click)="populateProperties()" class="nav-link" id="v-pills-properties-tab" data-bs-toggle="pill" data-bs-target="#v-pills-properties" type="button" role="tab" aria-controls="v-pills-properties" aria-selected="false">Proprietati</button>
-    <button (click)="populateBookings()" class="nav-link" id="v-pills-bookings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-bookings" type="button" role="tab" aria-controls="v-pills-bookings" aria-selected="false">Rezervari</button>
-  </div>
-  <div class="tab-content" id="v-pills-tabContent">
-    <div class="tab-pane fade show active" id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-users-tab">
-      <div *ngIf="users">
-        <div *ngFor="let user of users">
-          <h3>{{ user.firstName }}</h3>
+<div class="admin-container">
+  <div class="d-flex align-items-start">
+    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <button (click)="populateUsers()" class="nav-link active" id="v-pills-users-tab" data-bs-toggle="pill" data-bs-target="#v-pills-users" type="button" role="tab" aria-controls="v-pills-users" aria-selected="true">Utilizatori</button>
+      <button (click)="populateProperties()" class="nav-link" id="v-pills-properties-tab" data-bs-toggle="pill" data-bs-target="#v-pills-properties" type="button" role="tab" aria-controls="v-pills-properties" aria-selected="false">Proprietati</button>
+      <button (click)="populateBookings()" class="nav-link" id="v-pills-bookings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-bookings" type="button" role="tab" aria-controls="v-pills-bookings" aria-selected="false">Rezervari</button>
+    </div>
+    <div class="tab-content" id="v-pills-tabContent">
+      <div class="tab-pane fade show active" id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-users-tab">
+        <div *ngIf="users">
+          <div *ngFor="let user of users">
+            <h3>{{ user.firstName }}</h3>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="tab-pane fade" id="v-pills-properties" role="tabpanel" aria-labelledby="v-pills-properties-tab">
-      <div *ngIf="properties">
-        <div *ngFor="let property of properties">
-          <h3>{{ property.name }}</h3>
+      <div class="tab-pane fade" id="v-pills-properties" role="tabpanel" aria-labelledby="v-pills-properties-tab">
+        <div *ngIf="properties">
+          <div *ngFor="let property of properties">
+            <h3>{{ property.name }}</h3>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="tab-pane fade" id="v-pills-bookings" role="tabpanel" aria-labelledby="v-pills-bookings-tab">
-      <div *ngIf="bookings">
-        <div *ngFor="let booking of bookings">
-          <h3>{{ booking.startDate }}</h3>
+      <div class="tab-pane fade" id="v-pills-bookings" role="tabpanel" aria-labelledby="v-pills-bookings-tab">
+        <div *ngIf="bookings">
+          <div *ngFor="let booking of bookings">
+            <h3>{{ booking.startDate }}</h3>
+          </div>
         </div>
       </div>
     </div>
