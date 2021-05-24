@@ -1,6 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/">{{ title }}</a>
+    <a class="navbar-brand" routerLink="/">
+      <img routerLink="/" src="../../assets/logo.png" alt="Logo">
+      {{ title }}
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -8,13 +11,13 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a class="nav-link" routerLink="/account">
-            <img routerLink="/account" src="../../assets/account.png" alt="Account">
+            <!-- <img routerLink="/account" src="../../assets/account.png" alt="Account"> -->
             Account
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/properties">
-            <img routerLink="/properties" src="../../assets/properties.png" alt="Properties">
+            <!-- <img routerLink="/properties" src="../../assets/properties.png" alt="Properties"> -->
             Properties
           </a>
         </li>

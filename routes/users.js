@@ -3,7 +3,13 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const jwtKey = require('../config/keys').JWT_KEY;
 const checkAuthentication = require('../middleware/check-authentication');
-
+const nodemailer = require('nodemailer');
+const mailerService = require('../config/mailer-keys').service;
+const mailerAuth = require('../config/mailer-keys').auth;
+const mailerTransporter = nodemailer.createTransport({
+  service: mailerService,
+  auth: mailerAuth
+});
 const router = express.Router();
 const saltRounds = 10;
 
@@ -22,6 +28,13 @@ router.post('/', function(req, res) {
   let firstName = req.body.firstName;
   let lastName = req.body.lastName;
   let isAdmin = req.body.isAdmin;
+  const mailDetails = {
+    from: 'Renting Units <renting.units@gmail.com>',
+    to: email,
+    subject: 'Inregistrare cont',
+    text: 'Un cont nou a fost creat pe platforma Renting!'
+  };
+
   User.find({ email: email })
   .exec()
   .then(user => {
@@ -45,6 +58,13 @@ router.post('/', function(req, res) {
           lastName: newUser.lastName,
           isAdmin: newUser.isAdmin
         }, jwtKey, { expiresIn: "1h" });
+        mailerTransporter.sendMail(mailDetails, function(err, info) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(info);
+          }
+        });
         res.status(200).json({ token: token, message: 'Cont creat cu succes!' })
       })
       .catch(err => res.status(500).json({ error: err, message: 'Contul nu a putut fi creat!' }));
