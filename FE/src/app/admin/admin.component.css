@@ -2,3 +2,25 @@
   padding: 2rem;
   margin: auto;
 }
+
+.logo {
+  width: 32px;
+  height: 32px;
+  margin-right: 0.5rem;
+}
+
+.heading-container {
+  display: flex;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+th, td {
+  overflow: hidden;
+  width: 200px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
