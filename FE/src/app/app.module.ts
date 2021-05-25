@@ -26,6 +26,7 @@ import { RegisterComponent } from './register/register.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { AdminComponent } from './admin/admin.component';
 import { MatIconModule } from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
 
 
 export function tokenGetter() {
@@ -65,7 +66,8 @@ export function tokenGetter() {
     MatFormFieldModule,
     MatInputModule,
     MatMomentDateModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule
   ],
   providers: [
     { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }

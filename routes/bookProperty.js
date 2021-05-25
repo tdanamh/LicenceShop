@@ -9,7 +9,7 @@ const BookProperty = require('../models/BookProperty');
 
 router.get('/', function(req, res) {
   BookProperty.find()
-  .exec()
+  .populate({ path: 'propertyId', model: Property })
   .then(bookProperties => { return res.json({ bookings: bookProperties })})
   .catch(err => res.status(500).json({ err: err }));
 });
