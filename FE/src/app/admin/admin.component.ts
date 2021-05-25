@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { User } from '../user';
@@ -25,7 +26,10 @@ export class AdminComponent implements OnInit {
   displayedColumnsProperties: string[] = ['name', 'address', 'country', 'city'];
   displayedColumnsBookings: string[] = ['userId', 'propertyId', 'propertyName', 'startDate', 'endDate'];
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
     this.populateUsers();
@@ -47,6 +51,11 @@ export class AdminComponent implements OnInit {
         break; 
       } 
     }
+  }
+
+  logOut(): void {
+    localStorage.setItem('AUTH', '');
+    this.router.navigateByUrl('/admin-login');
   }
 
   populateUsers(): void {

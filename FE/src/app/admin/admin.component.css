@@ -9,6 +9,12 @@
   margin-right: 0.5rem;
 }
 
+.exit {
+  width: 32px;
+  height: 32px;
+  margin-left: 1.5rem;
+}
+
 .heading-container {
   display: flex;
 }
