@@ -12,6 +12,7 @@ const mailerTransporter = nodemailer.createTransport({
 });
 const router = express.Router();
 const saltRounds = 10;
+const adminCheckAuthentication = require('../middleware/admin-check-authentication');
 
 const User = require('../models/User');
 
@@ -58,13 +59,13 @@ router.post('/', function(req, res) {
           lastName: newUser.lastName,
           isAdmin: newUser.isAdmin
         }, jwtKey, { expiresIn: "1h" });
-        mailerTransporter.sendMail(mailDetails, function(err, info) {
-          if (err) {
-            console.log(err);
-          } else {
-            console.log(info);
-          }
-        });
+        // mailerTransporter.sendMail(mailDetails, function(err, info) {
+        //   if (err) {
+        //     console.log(err);
+        //   } else {
+        //     console.log(info);
+        //   }
+        // });
         res.status(200).json({ token: token, message: 'Cont creat cu succes!' })
       })
       .catch(err => res.status(500).json({ error: err, message: 'Contul nu a putut fi creat!' }));
@@ -97,8 +98,7 @@ router.put('/', checkAuthentication, function(req, res) {
 })
 
 /* DELETE -> admin delete user by id */
-// TODO: add admin check
-router.delete('/:id', function(req, res) {
+router.delete('/:id', adminCheckAuthentication, function(req, res) {
   let userId = req.params.id;
   User.findById(userId)
   .then(user => {

@@ -13,10 +13,18 @@
   width: 32px;
   height: 32px;
   margin-left: 1.5rem;
+  cursor: pointer;
 }
 
 .heading-container {
   display: flex;
+}
+
+.add-new-property {
+  width: 32px;
+  height: 32px;
+  margin-right: 0.5rem;
+  cursor: pointer;
 }
 
 table {
@@ -26,7 +34,7 @@ table {
 
 th, td {
   overflow: hidden;
-  width: 200px;
+  /* width: 200px; */
   text-overflow: ellipsis;
   white-space: nowrap;
 }

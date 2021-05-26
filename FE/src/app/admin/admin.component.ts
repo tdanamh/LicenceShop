@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
+import Swal from 'sweetalert2';
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 import { User } from '../user';
 import { Property } from '../property';
 import { BookProperty } from '../bookProperty';
+import { DialogEditPropertyComponent } from '../dialog-edit-property/dialog-edit-property.component';
 
 @Component({
   selector: 'app-admin',
@@ -22,13 +25,14 @@ export class AdminComponent implements OnInit {
   dataSourceProperties!: any
   dataSourceBookings!: any
 
-  displayedColumnsUsers: string[] = ['email', 'firstName', 'lastName', 'isAdmin'];
-  displayedColumnsProperties: string[] = ['name', 'address', 'country', 'city'];
-  displayedColumnsBookings: string[] = ['userId', 'propertyId', 'propertyName', 'startDate', 'endDate'];
+  displayedColumnsUsers: string[] = ['email', 'firstName', 'lastName', 'isAdmin', 'action'];
+  displayedColumnsProperties: string[] = ['name', 'address', 'country', 'city', 'action'];
+  displayedColumnsBookings: string[] = ['userId', 'propertyId', 'propertyName', 'startDate', 'endDate', 'status'];
 
   constructor(
     private http: HttpClient,
     private router: Router,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -71,6 +75,39 @@ export class AdminComponent implements OnInit {
     )
   }
 
+  deleteUser(id: any): void {
+    Swal.fire({
+      text: 'Stergeti utilizator?',
+      showCancelButton: true,
+      confirmButtonText: 'DA',
+      focusConfirm: true,
+    })
+    .then((result) => {
+      if(result.isConfirmed) {
+        // Delete user
+        const route = '/api/users/' + id;
+        this.http.delete<any>(route)
+        .subscribe(
+          data => {
+            Swal.fire({
+              title: 'Succes',
+              text: data.message,
+              icon: 'success',
+              focusConfirm: true,
+              confirmButtonText: 'OK'
+            });
+            this.populateUsers();
+          },
+          err => {
+            console.log(err);
+          }
+        )
+      } else {
+        this.router.navigateByUrl('/admin');
+      }
+    });
+  }
+
   populateProperties(): void {
     this.http.get<any>('/api/properties')
     .subscribe(
@@ -84,6 +121,39 @@ export class AdminComponent implements OnInit {
     )
   }
 
+  deleteProperty(id: any): void {
+    Swal.fire({
+      text: 'Stergeti proprietate?',
+      showCancelButton: true,
+      confirmButtonText: 'DA',
+      focusConfirm: true,
+    })
+    .then((result) => {
+      if(result.isConfirmed) {
+        // Delete property
+        const route = '/api/properties/' + id;
+        this.http.delete<any>(route)
+        .subscribe(
+          data => {
+            Swal.fire({
+              title: 'Succes',
+              text: data.message,
+              icon: 'success',
+              focusConfirm: true,
+              confirmButtonText: 'OK'
+            });
+            this.populateProperties();
+          },
+          err => {
+            console.log(err);
+          }
+        )
+      } else {
+        this.router.navigateByUrl('/admin');
+      }
+    });
+  }
+
   populateBookings(): void {
     this.http.get<any>('/api/bookProperty')
     .subscribe(
@@ -95,5 +165,21 @@ export class AdminComponent implements OnInit {
         console.log(err);
       }
     )
+  }
+
+  editProperty(property: any): void {
+    const dialogRef = this.dialog.open(DialogEditPropertyComponent, {
+      data: {
+        property: property
+      }
+    });
+    dialogRef.afterClosed()
+    .subscribe(result => {
+      this.populateProperties();
+    });
+  }
+  
+  addNewProperty(): void {
+    // open dialog box 
   }
 }

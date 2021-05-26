@@ -1,0 +1,164 @@
+<div class="edit-property-container">
+  <h2 mat-dialog-title>Editare proprietate</h2>
+  <div mat-dialog-content *ngIf="data.property">
+    <form [formGroup]="propertyForm" (ngSubmit)="changeData()">
+      <div class="form-group">
+        <label class="col-form-label">
+          Nume:
+          <input class="form-control" [(ngModel)]="data.property.name" type="text" formControlName="name">
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Descriere:
+          <input class="form-control" [(ngModel)]="data.property.description" type="text" formControlName="description">
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Adresa:
+          <input class="form-control" [(ngModel)]="data.property.address" type="text" formControlName="address">
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Tara:
+          <input class="form-control" [(ngModel)]="data.property.country" type="text" formControlName="country">
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Oras:
+          <input class="form-control" [(ngModel)]="data.property.city" type="text" formControlName="city">
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Pret per noapte:
+          <input class="form-control" [(ngModel)]="data.property.pricePerNight" type="text" formControlName="pricePerNight">
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Numar adulti:
+          <input class="form-control" [(ngModel)]="data.property.adultsNumber" type="text" formControlName="adultsNumber">
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Numar de camere:
+          <input class="form-control" [(ngModel)]="data.property.roomsNumber" type="text" formControlName="roomsNumber">
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Dimensiune:
+          <input class="form-control" [(ngModel)]="data.property.dimmension" type="text" formControlName="dimmension">
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Balcon:
+          <span *ngIf="data.property.balcony">Da</span>
+          <span *ngIf="!data.property.balcony">Nu</span>
+          <div class="form-group">
+            <span>Modificati:</span>
+            <select formControlName="balcony">
+              <option value="true">Da</option>
+              <option value="false">Nu</option>
+            </select>
+          </div>
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Baie privata:
+          <span *ngIf="data.property.privateBathroom">Da</span>
+          <span *ngIf="!data.property.privateBathroom">Nu</span>
+          <div class="form-group">
+            <span>Modificati:</span>
+            <select formControlName="privateBathroom">
+              <option value="true">Da</option>
+              <option value="false">Nu</option>
+            </select>
+          </div>
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          A/C:
+          <span *ngIf="data.property.airConditioning">Da</span>
+          <span *ngIf="!data.property.airConditioning">Nu</span>
+          <div class="form-group">
+            <span>Modificati:</span>
+            <select formControlName="airConditioning">
+              <option value="true">Da</option>
+              <option value="false">Nu</option>
+            </select>
+          </div>
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Parcare gratuita:
+          <span *ngIf="data.property.freeParking">Da</span>
+          <span *ngIf="!data.property.freeParking">Nu</span>
+          <div class="form-group">
+            <span>Modificati:</span>
+            <select formControlName="freeParking">
+              <option value="true">Da</option>
+              <option value="false">Nu</option>
+            </select>
+          </div>
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Mic dejun inclus:
+          <span *ngIf="data.property.breakfastIncluded">Da</span>
+          <span *ngIf="!data.property.breakfastIncluded">Nu</span>
+          <div class="form-group">
+            <span>Modificati:</span>
+            <select formControlName="breakfastIncluded">
+              <option value="true">Da</option>
+              <option value="false">Nu</option>
+            </select>
+          </div>
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Acceptare animale:
+          <span *ngIf="data.property.petsAllowed">Da</span>
+          <span *ngIf="!data.property.petsAllowed">Nu</span>
+          <div class="form-group">
+            <span>Modificati:</span>
+            <select formControlName="petsAllowed">
+              <option value="true">Da</option>
+              <option value="false">Nu</option>
+            </select>
+          </div>
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Distanta fata de centru:
+          <input class="form-control" [(ngModel)]="data.property.distanceFromCenter" type="text" formControlName="distanceFromCenter">
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Evaluari:
+          <input class="form-control" [(ngModel)]="data.property.score" type="text" formControlName="score">
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Imagini:
+          <input class="form-control" [(ngModel)]="data.property.imagesPaths" type="text" formControlName="imagesPaths">
+        </label>
+      </div>
+      <button type="submit" class="btn btn-success">Actualizeaza date</button>
+    </form>
+  </div>
+</div>
