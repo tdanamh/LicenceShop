@@ -1,4 +1,5 @@
 const express = require('express');
+const adminCheckAuthentication = require('../middleware/admin-check-authentication');
 
 const router = express.Router();
 
@@ -69,5 +70,70 @@ router.post('/', function(req, res) {
   })
   .catch(err => res.status(500).json({ error: err }));
 })
+
+/* DELETE -> admin delete property by id */
+router.delete('/:id', adminCheckAuthentication, function(req, res) {
+  let propertyId = req.params.id;
+  Property.findById(propertyId)
+  .then(property => {
+    if (!property) {
+      return res.status(404).json({ message: 'Proprietate inexistenta!' });
+    }
+    property.remove()
+    .then( () => res.status(200).json({ message: 'Proprietate stearsa!' }))
+    .catch(err => res.status(500).json({ error: err }));
+  })
+  .catch(err => res.status(500).json({ error: err }));
+})
+
+router.put('/', adminCheckAuthentication, function(req, res) {
+  let propertyId = req.body.propertyId;
+  let name = req.body.name;
+  let description = req.body.description;
+  let address = req.body.address;
+  let country = req.body.country;
+  let city = req.body.city;
+  let pricePerNight = req.body.pricePerNight;
+  let adultsNumber = req.body.adultsNumber;
+  let roomsNumber = req.body.roomsNumber;
+  let dimmension = req.body.dimmension;
+  let balcony = req.body.balcony;
+  let privateBathroom = req.body.privateBathroom;
+  let airConditioning = req.body.airConditioning;
+  let freeParking = req.body.freeParking;
+  let breakfastIncluded = req.body.breakfastIncluded;
+  let petsAllowed = req.body.petsAllowed;
+  let distanceFromCenter = req.body.distanceFromCenter;
+  let score = req.body.score;
+  let imagesPaths = req.body.imagesPaths;
+
+  Property.findById(propertyId)
+  .then(property => {
+    property.name = name;
+    property.description = description;
+    property.address = address;
+    property.country = country;
+    property.city = city;
+    property.pricePerNight = pricePerNight;
+    property.adultsNumber = adultsNumber;
+    property.roomsNumber = roomsNumber;
+    property.dimmension = dimmension;
+    property.balcony = balcony;
+    property.privateBathroom = privateBathroom;
+    property.airConditioning = airConditioning;
+    property.freeParking = freeParking;
+    property.breakfastIncluded = breakfastIncluded;
+    property.petsAllowed = petsAllowed;
+    property.distanceFromCenter = distanceFromCenter;
+    property.score = score;
+    property.imagesPaths = imagesPaths;
+
+    property.save()
+    .catch(err => res.status(500).json({ error: err }));
+
+    res.status(200).json({ message: 'Proprietate modificata cu succes!' });
+  })
+  .catch(err => res.status(500).json({ error: err }));
+});
 
 module.exports = router;
