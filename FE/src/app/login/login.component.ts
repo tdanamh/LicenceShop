@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+import { ResetPasswordComponent } from '../reset-password/reset-password.component';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +23,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -42,5 +46,17 @@ export class LoginComponent implements OnInit {
         this.message = err.error.message;
       }
     )
+  }
+
+  resetPassword() {
+    const dialogRef = this.dialog.open(ResetPasswordComponent, {
+      data: {
+       
+      }
+    });
+    dialogRef.afterClosed()
+    .subscribe(result => {
+      // console.log(result);
+    });
   }
 }

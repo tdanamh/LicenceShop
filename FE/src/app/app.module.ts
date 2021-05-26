@@ -30,6 +30,7 @@ import { PropertyDetailComponent } from './property-detail/property-detail.compo
 import { BookPropertyComponent } from './book-property/book-property.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogEditPropertyComponent } from './dialog-edit-property/dialog-edit-property.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 export function tokenGetter() {
   return localStorage.getItem('AUTH');
@@ -48,7 +49,8 @@ export function tokenGetter() {
     RegisterComponent,
     AdminLoginComponent,
     AdminComponent,
-    DialogEditPropertyComponent
+    DialogEditPropertyComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

@@ -155,4 +155,35 @@ router.get('/current-user', checkAuthentication, function(req, res) {
   .catch(err => res.status(500).json({ error: err }));
 });
 
+router.put('/reset-password', function(req, res) {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  User.find({ email: email })
+  .exec()
+  .then(user => {
+    const mailDetails = {
+      from: 'Renting Units <renting.units@gmail.com>',
+      to: email,
+      subject: 'Resetare parola',
+      text: 'Parola dumneavoastra a fost resetata! Noua parola este: ' + password
+    };
+    bcrypt.hash(password, saltRounds, function(err, hash) {
+      user[0].password = hash;
+      user[0].save()
+      .then(updatedUser =>  {
+        res.status(200).json({ message: 'Parola resetata cu succes!' })
+        mailerTransporter.sendMail(mailDetails, function(err, info) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(info);
+          }
+        });
+      })
+      .catch(err => res.status(500).json({ error: err }));
+    });
+  })
+  .catch(err => res.status(500).json({ error: err }));
+});
 module.exports = router;
