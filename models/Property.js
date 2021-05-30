@@ -39,39 +39,42 @@ const PropertiesSchema = new Schema({
   },
   balcony: {
     type: Boolean,
-    required: true
+    required: true,
+    default: true
   },
   privateBathroom: {
     type: Boolean,
-    required: true
+    required: true,
+    default: true
   },
   airConditioning: {
     type: Boolean,
-    required: true
+    required: true,
+    default: true
   },
   freeParking: {
     type: Boolean,
-    required: true
+    required: true,
+    default: true
   },
   breakfastIncluded: {
     type: Boolean,
-    required: true
+    required: true,
+    default: true
   },
   petsAllowed: {
     type: Boolean,
-    required: true
+    required: true,
+    default: true
   },
   distanceFromCenter: {
     type: Number,
     required: true
   },
-  score: {
-    type: Number,
-    required: true
-  },
   imagesPaths: [{
     type: String,
-    required: false
+    required: false,
+    default: ""
   }]
 });
 module.exports = Property = mongoose.model("property", PropertiesSchema);

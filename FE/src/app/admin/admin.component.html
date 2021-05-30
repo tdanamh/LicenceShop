@@ -6,12 +6,12 @@
   </div>
   <div class="d-flex align-items-start">
     <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <button (click)="populateUsers()" class="nav-link active" id="v-pills-users-tab" data-bs-toggle="pill" data-bs-target="#v-pills-users" type="button" role="tab" aria-controls="v-pills-users" aria-selected="true">Utilizatori</button>
-      <button (click)="populateProperties()" class="nav-link" id="v-pills-properties-tab" data-bs-toggle="pill" data-bs-target="#v-pills-properties" type="button" role="tab" aria-controls="v-pills-properties" aria-selected="false">Proprietati</button>
+      <button (click)="populateUsers()" class="nav-link " id="v-pills-users-tab" data-bs-toggle="pill" data-bs-target="#v-pills-users" type="button" role="tab" aria-controls="v-pills-users" aria-selected="true">Utilizatori</button>
+      <button (click)="populateProperties()" class="nav-link active" id="v-pills-properties-tab" data-bs-toggle="pill" data-bs-target="#v-pills-properties" type="button" role="tab" aria-controls="v-pills-properties" aria-selected="false">Proprietati</button>
       <button (click)="populateBookings()" class="nav-link" id="v-pills-bookings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-bookings" type="button" role="tab" aria-controls="v-pills-bookings" aria-selected="false">Rezervari</button>
     </div>
     <div class="tab-content" id="v-pills-tabContent">
-      <div class="tab-pane fade show active" id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-users-tab">
+      <div class="tab-pane fade " id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-users-tab">
         <div *ngIf="users" class="users-container">
           <mat-form-field>
             <mat-label>Filtreaza</mat-label>
@@ -48,43 +48,48 @@
           </table>
         </div>   
       </div>
-      <div class="tab-pane fade" id="v-pills-properties" role="tabpanel" aria-labelledby="v-pills-properties-tab">
+      <div class="tab-pane fade show active" id="v-pills-properties" role="tabpanel" aria-labelledby="v-pills-properties-tab">
         <div *ngIf="properties">
-          <img (click)="addNewProperty()" class="add-new-property" src="../../assets/add-property.png" alt="Add property">
-          <mat-form-field>
-            <mat-label>Filtreaza</mat-label>
-            <input matInput (keyup)="applyFilter($event, 'property')" placeholder="Cauta in orice coloana..." #input>
-          </mat-form-field>          
-          <table mat-table [dataSource]="dataSourceProperties" class="mat-elevation-z8">
-            <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef> Nume </th>
-              <td mat-cell *matCellDef="let property"> {{ property.name }} </td>
-            </ng-container>
-            <ng-container matColumnDef="address">
-              <th mat-header-cell *matHeaderCellDef> Adresa </th>
-              <td mat-cell *matCellDef="let property"> {{ property.address }} </td>
-            </ng-container>
-            <ng-container matColumnDef="country">
-              <th mat-header-cell *matHeaderCellDef> Tara </th>
-              <td mat-cell *matCellDef="let property"> {{ property.country }} </td>
-            </ng-container>
-            <ng-container matColumnDef="city">
-              <th mat-header-cell *matHeaderCellDef> Oras </th>
-              <td mat-cell *matCellDef="let property"> {{ property.city }} </td>
-            </ng-container>
-            <ng-container matColumnDef="action">
-              <th mat-header-cell *matHeaderCellDef> Actiune </th>
-              <td mat-cell *matCellDef="let property"> 
-                <button (click)="deleteProperty(property._id)" mat-button color="warn">Sterge</button>
-                <button (click)="editProperty(property)" mat-button color="primary">Editeaza</button>
-              </td>
-            </ng-container>
-            <tr mat-header-row *matHeaderRowDef="displayedColumnsProperties"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumnsProperties;"></tr>
-            <tr class="mat-row" *matNoDataRow>
-              <td class="mat-cell" colspan="4">Niciun rezultat nu corespunde filtrului "{{ input.value }}"</td>
-            </tr>
-          </table>
+          <div class="add-new-property">
+            <span>Adauga proprietate</span>
+            <img (click)="addNewProperty()" class="new-property-image" src="../../assets/add-property.png" alt="Add property">
+          </div>
+          <div class="table-container">
+            <mat-form-field>
+              <mat-label>Filtreaza</mat-label>
+              <input matInput (keyup)="applyFilter($event, 'property')" placeholder="Cauta in orice coloana..." #input>
+            </mat-form-field>
+            <table mat-table [dataSource]="dataSourceProperties" class="mat-elevation-z8">
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Nume </th>
+                <td mat-cell *matCellDef="let property"> {{ property.name }} </td>
+              </ng-container>
+              <ng-container matColumnDef="address">
+                <th mat-header-cell *matHeaderCellDef> Adresa </th>
+                <td mat-cell *matCellDef="let property"> {{ property.address }} </td>
+              </ng-container>
+              <ng-container matColumnDef="country">
+                <th mat-header-cell *matHeaderCellDef> Tara </th>
+                <td mat-cell *matCellDef="let property"> {{ property.country }} </td>
+              </ng-container>
+              <ng-container matColumnDef="city">
+                <th mat-header-cell *matHeaderCellDef> Oras </th>
+                <td mat-cell *matCellDef="let property"> {{ property.city }} </td>
+              </ng-container>
+              <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Actiune </th>
+                <td mat-cell *matCellDef="let property"> 
+                  <button (click)="deleteProperty(property._id)" mat-button color="warn">Sterge</button>
+                  <button (click)="editProperty(property)" mat-button color="primary">Editeaza</button>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsProperties"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsProperties;"></tr>
+              <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">Niciun rezultat nu corespunde filtrului "{{ input.value }}"</td>
+              </tr>
+            </table>
+          </div>
         </div>   
       </div>
       <div class="tab-pane fade" id="v-pills-bookings" role="tabpanel" aria-labelledby="v-pills-bookings-tab">

@@ -3,6 +3,10 @@
   <div class="card col-sm-9">
     <div class="card-header">
       <span class="card-title">Images</span>
+      <!-- <div *ngFor="let path of property.imagesPaths">
+        <img style="width:480px;" [src]="path" />
+      </div> -->
+      <ng-image-slider *ngIf="imageObject" [images]="imageObject" #nav></ng-image-slider>
     </div>
     <div class="card-body">
     </div>

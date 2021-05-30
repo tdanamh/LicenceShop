@@ -1,30 +1,43 @@
 <app-navbar></app-navbar>
 <div class="register-container">
-  <h1>Creeaza cont nou</h1>
+  <h2>Creeaza cont nou</h2>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label class="col-sm-2 col-form-label col-form-label-lg">
+      <label class="col-sm-2 col-form-label">
         Adresa de Email:
         <input class="form-control" type="email" formControlName="email" required placeholder="Introduceti email...">
       </label>
+      <div *ngIf="form.email.touched && form.email.invalid" class="alert alert-danger">
+        <div *ngIf="form.email.errors?.required">Adresa de email trebuie completata!</div>
+        <div *ngIf="form.email.errors?.email">Adresa de email nu este valida!</div>
+      </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-2 col-form-label col-form-label-lg">
+      <label class="col-sm-2 col-form-label">
         Parola:
         <input class="form-control" type="password" formControlName="password" required placeholder="Introduceti parola...">
       </label>
+      <div *ngIf="form.password.touched && form.password.invalid" class="alert alert-danger">
+        <div *ngIf="form.password.errors?.required">Parola trebuie completata!</div>
+      </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-2 col-form-label col-form-label-lg">
+      <label class="col-sm-2 col-form-label">
         Prenume:
         <input class="form-control" type="text" formControlName="firstName" required placeholder="Introduceti prenume...">
       </label>
+      <div *ngIf="form.firstName.touched && form.firstName.invalid" class="alert alert-danger">
+        <div *ngIf="form.firstName.errors?.required">Prenumele trebuie completat!</div>
+      </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-2 col-form-label col-form-label-lg">
+      <label class="col-sm-2 col-form-label">
         Nume:
         <input class="form-control" type="text" formControlName="lastName" required placeholder="Introduceti nume...">
       </label>
+      <div *ngIf="form.lastName.touched && form.lastName.invalid" class="alert alert-danger">
+        <div *ngIf="form.lastName.errors?.required">Numele trebuie completat!</div>
+      </div>
     </div>
     <div *ngIf="message" class="form-group">
       <h3 style="color: red">{{ message }}</h3>

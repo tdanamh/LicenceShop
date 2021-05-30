@@ -1,0 +1,171 @@
+<div class="add-property-container">
+  <h2 mat-dialog-title>Adaugare proprietate</h2>
+  <div mat-dialog-content>
+    <form [formGroup]="propertyForm" (ngSubmit)="addProperty()">
+      <div class="form-group">
+        <label class="col-form-label">
+          Nume:
+          <input class="form-control" type="text" formControlName="name" required>
+        </label>
+        <div *ngIf="form.name.touched && form.name.invalid" class="alert alert-danger">
+          <div *ngIf="form.name.errors?.required">Numele trebuie completat!</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Descriere:
+          <input class="form-control" type="text" formControlName="description" required>
+        </label>
+        <div *ngIf="form.description.touched && form.description.invalid" class="alert alert-danger">
+          <div *ngIf="form.description.errors?.required">Descrierea trebuie completata!</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Adresa:
+          <input class="form-control" type="text" formControlName="address" required>
+        </label>
+        <div *ngIf="form.address.touched && form.address.invalid" class="alert alert-danger">
+          <div *ngIf="form.address.errors?.required">Adresa trebuie completata!</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Tara:
+          <input class="form-control" type="text" formControlName="country" required>
+        </label>
+        <div *ngIf="form.country.touched && form.country.invalid" class="alert alert-danger">
+          <div *ngIf="form.country.errors?.required">Tara trebuie completata!</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Oras:
+          <input class="form-control" type="text" formControlName="city" required>
+        </label>
+        <div *ngIf="form.city.touched && form.city.invalid" class="alert alert-danger">
+          <div *ngIf="form.city.errors?.required">Orasul trebuie completat!</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Pret per noapte ($):
+          <input class="form-control" type="text" formControlName="pricePerNight" required>
+        </label>
+        <div *ngIf="form.pricePerNight.touched && form.pricePerNight.invalid" class="alert alert-danger">
+          <div *ngIf="form.pricePerNight.errors?.required">Pretul trebuie completat!</div>
+          <div *ngIf="form.pricePerNight.errors?.pattern">Pretul trebuie sa fie numar!</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Numar adulti:
+          <input class="form-control" type="text" formControlName="adultsNumber" required>
+        </label>
+        <div *ngIf="form.adultsNumber.touched && form.adultsNumber.invalid" class="alert alert-danger">
+          <div *ngIf="form.adultsNumber.errors?.required">Numarul de adulti trebuie completat!</div>
+          <div *ngIf="form.adultsNumber.errors?.pattern">Numarul de adulti trebuie sa fie numar!</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Numar de camere:
+          <input class="form-control" type="text" formControlName="roomsNumber" required>
+        </label>
+        <div *ngIf="form.roomsNumber.touched && form.roomsNumber.invalid" class="alert alert-danger">
+          <div *ngIf="form.roomsNumber.errors?.required">Numarul de camere trebuie completat!</div>
+          <div *ngIf="form.roomsNumber.errors?.pattern">Numarul de camere trebuie sa fie numar!</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Dimensiune (m2):
+          <input class="form-control" type="text" formControlName="dimmension" required>
+        </label>
+        <div *ngIf="form.dimmension.touched && form.dimmension.invalid" class="alert alert-danger">
+          <div *ngIf="form.dimmension.errors?.required">Dimensiunea trebuie completata!</div>
+          <div *ngIf="form.dimmension.errors?.pattern">Dimensiunea trebuie sa fie numar!</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Balcon:
+          <select formControlName="balcony" required>
+            <option value="true">Da</option>
+            <option value="false">Nu</option>
+          </select>
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Baie privata:
+          <select formControlName="privateBathroom" required>
+            <option value="true">Da</option>
+            <option value="false">Nu</option>
+          </select>
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          A/C:
+          <select formControlName="airConditioning" required>
+            <option value="true">Da</option>
+            <option value="false">Nu</option>
+          </select>
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Parcare gratuita:
+          <select formControlName="freeParking" required>
+            <option value="true">Da</option>
+            <option value="false">Nu</option>
+          </select>
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Mic dejun inclus:
+          <select formControlName="breakfastIncluded" required>
+            <option value="true">Da</option>
+            <option value="false">Nu</option>
+          </select>
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Acceptare animale:
+          <select formControlName="petsAllowed" required>
+            <option value="true">Da</option>
+            <option value="false">Nu</option>
+          </select>
+        </label>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Distanta fata de centru(aprox.):
+          <input class="form-control" type="text" formControlName="distanceFromCenter" required>
+        </label>
+        <div *ngIf="form.distanceFromCenter.touched && form.distanceFromCenter.invalid" class="alert alert-danger">
+          <div *ngIf="form.distanceFromCenter.errors?.required">Distanta trebuie completata!</div>
+          <div *ngIf="form.distanceFromCenter.errors?.pattern">Distanta trebuie sa fie numar!</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-form-label">
+          Adauga imagini:
+          <input type="file" multiple class="form-control file-input" (change)="onFileSelected($event)" #fileUpload>
+          <div class="file-upload">
+            <div *ngFor="let file of myFiles">
+              {{file.name}}
+            </div>
+            <button type="button" mat-mini-fab color="warn" class="upload-btn" (click)="fileUpload.click()">
+              <mat-icon>attach_file</mat-icon>
+            </button>
+         </div>
+        </label>
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="!propertyForm.valid">Adauga proprietate</button>
+    </form>
+  </div>
+</div>

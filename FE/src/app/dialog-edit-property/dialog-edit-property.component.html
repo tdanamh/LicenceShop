@@ -35,26 +35,40 @@
       <div class="form-group">
         <label class="col-form-label">
           Pret per noapte:
-          <input class="form-control" [(ngModel)]="data.property.pricePerNight" type="text" formControlName="pricePerNight">
+          <input class="form-control" [(ngModel)]="data.property.pricePerNight" type="text"
+            formControlName="pricePerNight">
         </label>
+        <div *ngIf="form.pricePerNight.touched && form.pricePerNight.invalid" class="alert alert-danger">
+          <div *ngIf="form.pricePerNight.errors?.pattern">Pretul trebuie sa fie numar!</div>
+        </div>
       </div>
       <div class="form-group">
         <label class="col-form-label">
           Numar adulti:
-          <input class="form-control" [(ngModel)]="data.property.adultsNumber" type="text" formControlName="adultsNumber">
+          <input class="form-control" [(ngModel)]="data.property.adultsNumber" type="text"
+            formControlName="adultsNumber">
         </label>
+        <div *ngIf="form.adultsNumber.touched && form.adultsNumber.invalid" class="alert alert-danger">
+          <div *ngIf="form.adultsNumber.errors?.pattern">Numarul de adulti trebuie sa fie numar!</div>
+        </div>
       </div>
       <div class="form-group">
         <label class="col-form-label">
           Numar de camere:
           <input class="form-control" [(ngModel)]="data.property.roomsNumber" type="text" formControlName="roomsNumber">
         </label>
+        <div *ngIf="form.roomsNumber.touched && form.roomsNumber.invalid" class="alert alert-danger">
+          <div *ngIf="form.roomsNumber.errors?.pattern">Numarul de camere trebuie sa fie numar!</div>
+        </div>
       </div>
       <div class="form-group">
         <label class="col-form-label">
           Dimensiune:
           <input class="form-control" [(ngModel)]="data.property.dimmension" type="text" formControlName="dimmension">
         </label>
+        <div *ngIf="form.dimmension.touched && form.dimmension.invalid" class="alert alert-danger">
+          <div *ngIf="form.dimmension.errors?.pattern">Dimensiunea trebuie sa fie numar!</div>
+        </div>
       </div>
       <div class="form-group">
         <label class="col-form-label">
@@ -142,20 +156,35 @@
       </div>
       <div class="form-group">
         <label class="col-form-label">
-          Distanta fata de centru:
+          Distanta fata de centru(aprox.):
           <input class="form-control" [(ngModel)]="data.property.distanceFromCenter" type="text" formControlName="distanceFromCenter">
         </label>
+        <div *ngIf="form.distanceFromCenter.touched && form.distanceFromCenter.invalid" class="alert alert-danger">
+          <div *ngIf="form.distanceFromCenter.errors?.pattern">Distanta trebuie sa fie numar!</div>
+        </div>
       </div>
       <div class="form-group">
         <label class="col-form-label">
-          Evaluari:
-          <input class="form-control" [(ngModel)]="data.property.score" type="text" formControlName="score">
+          Imagini actuale:
+          <mat-selection-list #imagesPaths (selectionChange)="onChange(imagesPaths.selectedOptions.selected)">
+            <mat-list-option *ngFor="let imagePath of data.property.imagesPaths" [value]="imagePath" selected>
+              <img style="width:48px;" [src]="imagesUrls[imagePath]" />
+            </mat-list-option>
+          </mat-selection-list>
         </label>
       </div>
       <div class="form-group">
         <label class="col-form-label">
-          Imagini:
-          <input class="form-control" [(ngModel)]="data.property.imagesPaths" type="text" formControlName="imagesPaths">
+          Adaugati imagini:
+          <input type="file" multiple class="form-control file-input" (change)="onFileSelected($event)" #fileUpload>
+          <div class="file-upload">
+            <div *ngFor="let file of myFiles">
+              {{file.name}}
+            </div>
+            <button type="button" mat-mini-fab color="warn" class="upload-btn" (click)="fileUpload.click()">
+              <mat-icon>attach_file</mat-icon>
+            </button>
+          </div>
         </label>
       </div>
       <button type="submit" class="btn btn-success">Actualizeaza date</button>

@@ -1,9 +1,12 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { MatSelectionList } from '@angular/material/list';
+import { MatListOption } from '@angular/material/list'
 
 @Component({
   selector: 'app-dialog-edit-property',
@@ -18,29 +21,70 @@ export class DialogEditPropertyComponent implements OnInit {
     address: new FormControl(''),
     country: new FormControl(''),
     city: new FormControl(''),
-    pricePerNight: new FormControl(''),
-    adultsNumber: new FormControl(''),
-    roomsNumber: new FormControl(''),
-    dimmension: new FormControl(''),
+    pricePerNight: new FormControl('', Validators.pattern("^[0-9]*$")),
+    adultsNumber: new FormControl('', Validators.pattern("^[0-9]*$")),
+    roomsNumber: new FormControl('', Validators.pattern("^[0-9]*$")),
+    dimmension: new FormControl('', Validators.pattern("^[0-9]*$")),
     balcony: new FormControl(''),
     privateBathroom: new FormControl(''),
     airConditioning: new FormControl(''),
     freeParking: new FormControl(''),
     breakfastIncluded: new FormControl(''),
     petsAllowed: new FormControl(''),
-    distanceFromCenter: new FormControl(''),
-    score: new FormControl(''),
-    imagesPaths: new FormControl('')
+    distanceFromCenter: new FormControl('', Validators.pattern("^[0-9]*$")),
+    imagesPaths: new FormControl(''),
   });
 
+  myFiles: any = [];
+
+  imagesUrls: any = [];
+
+  @ViewChild('imagesPaths') selectionList!: MatSelectionList
+
+  get form() {
+    return this.propertyForm.controls;
+  }
+  
   constructor(
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private http: HttpClient,
     private router: Router,
-  ) {}
+    private storage: AngularFireStorage
+  ) {
+      let property = this.data.property;
+      let that = this;
+      property.imagesPaths.forEach(function(item: any, index: any) {
+        const ref = that.storage.ref(item);
+        ref.getDownloadURL()
+        .subscribe(url => {
+          if (url) {
+            that.imagesUrls[item] = url;
+          }
+        })
+      });
+    }
 
   ngOnInit(): void {
+  }
+
+  onChange(options: MatListOption[]) {
+    let leftImages: any = []
+    options.map(option => {
+      let value = option.value;
+      leftImages.push(value);
+    });
+    this.data.property.imagesPaths = leftImages;
+  }
+
+  onFileSelected(event: any) {
+    const files = event.target.files;
+    if (files) {
+      let n = files.length;
+      for(var i = 0; i < n; i++) {
+        this.myFiles.push(files[i]);
+      }
+    }
   }
 
   changeData(): void {
@@ -54,7 +98,6 @@ export class DialogEditPropertyComponent implements OnInit {
     const adultsNumber = this.propertyForm.value.adultsNumber;
     const roomsNumber = this.propertyForm.value.roomsNumber;
     const dimmension = this.propertyForm.value.dimmension;
-    // TODO: check this is ok?
     let balcony = this.propertyForm.value.balcony;
     if (!balcony) {
       // No option selected, balcony remains empty, so we put the old value
@@ -80,10 +123,22 @@ export class DialogEditPropertyComponent implements OnInit {
     if (!petsAllowed) {
       petsAllowed = this.data.property.petsAllowed;
     }
-
     const distanceFromCenter = this.propertyForm.value.distanceFromCenter;
-    const score = this.propertyForm.value.score;
-    const imagesPaths = this.propertyForm.value.imagesPaths;
+
+    // Initialize with initial property images
+    let imagesPaths = this.data.property.imagesPaths;
+
+    // Check if new photos are added (myFiles)
+    if (this.myFiles) {
+      let that = this;
+      this.myFiles.forEach(function(item: any, index: any) {
+        // Add new item to imagesPaths
+        imagesPaths.push(item.name);
+        // Update storage
+        const ref = that.storage.ref(item.name);
+        const task = ref.put(item);
+      })
+    }
 
     this.http.put<any>('/api/properties', {
       propertyId: propertyId,
@@ -103,7 +158,6 @@ export class DialogEditPropertyComponent implements OnInit {
       breakfastIncluded: breakfastIncluded,
       petsAllowed: petsAllowed,
       distanceFromCenter: distanceFromCenter,
-      score: score,
       imagesPaths: imagesPaths
     })
     .subscribe(

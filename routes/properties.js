@@ -35,8 +35,8 @@ router.post('/', function(req, res) {
   let breakfastIncluded = req.body.breakfastIncluded;
   let petsAllowed = req.body.petsAllowed;
   let distanceFromCenter = req.body.distanceFromCenter;
-  let score = req.body.score;
   let imagesPaths = req.body.imagesPaths;
+
   Property.find({ name: name })
   .exec()
   .then(property => {
@@ -60,12 +60,11 @@ router.post('/', function(req, res) {
       breakfastIncluded: breakfastIncluded,
       petsAllowed: petsAllowed,
       distanceFromCenter: distanceFromCenter,
-      score: score,
       imagesPaths: imagesPaths
     });
     newProperty.save()
     .then(newProperty => res.status(200).json({ property: newProperty, message: 'Proprietate creata cu succes!' }))
-    .catch(err => res.status(500).json({ error: err, message: 'Proprietatea nu a putut fi creat!' }));
+    .catch(err => res.status(500).json({ error: err, message: 'Proprietatea nu a putut fi creata!' }));
     
   })
   .catch(err => res.status(500).json({ error: err }));
@@ -104,7 +103,6 @@ router.put('/', adminCheckAuthentication, function(req, res) {
   let breakfastIncluded = req.body.breakfastIncluded;
   let petsAllowed = req.body.petsAllowed;
   let distanceFromCenter = req.body.distanceFromCenter;
-  let score = req.body.score;
   let imagesPaths = req.body.imagesPaths;
 
   Property.findById(propertyId)
@@ -125,7 +123,6 @@ router.put('/', adminCheckAuthentication, function(req, res) {
     property.breakfastIncluded = breakfastIncluded;
     property.petsAllowed = petsAllowed;
     property.distanceFromCenter = distanceFromCenter;
-    property.score = score;
     property.imagesPaths = imagesPaths;
 
     property.save()
