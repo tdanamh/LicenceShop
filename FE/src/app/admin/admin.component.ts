@@ -9,6 +9,7 @@ import { User } from '../user';
 import { Property } from '../property';
 import { BookProperty } from '../bookProperty';
 import { DialogEditPropertyComponent } from '../dialog-edit-property/dialog-edit-property.component';
+import { DialogNewPropertyComponent } from '../dialog-new-property/dialog-new-property.component';
 
 @Component({
   selector: 'app-admin',
@@ -36,7 +37,8 @@ export class AdminComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.populateUsers();
+    // this.populateUsers();
+    this.populateProperties();
   }
 
   applyFilter(event: Event, object: string) {
@@ -180,6 +182,13 @@ export class AdminComponent implements OnInit {
   }
   
   addNewProperty(): void {
-    // open dialog box 
+    const dialogRef = this.dialog.open(DialogNewPropertyComponent, {
+      data: {
+      }
+    });
+    dialogRef.afterClosed()
+    .subscribe(result => {
+      this.populateProperties();
+    });
   }
 }

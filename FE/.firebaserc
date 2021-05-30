@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "renting-53ec3": {
+      "hosting": {
+        "FE": [
+          "renting-53ec3"
+        ]
+      }
+    }
+  }
+}

@@ -14,6 +14,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatListModule} from '@angular/material/list';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +32,13 @@ import { BookPropertyComponent } from './book-property/book-property.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogEditPropertyComponent } from './dialog-edit-property/dialog-edit-property.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { DialogNewPropertyComponent } from './dialog-new-property/dialog-new-property.component';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule, BUCKET } from '@angular/fire/storage';
+import { environment } from '../environments/environment';
+
+import { NgImageSliderModule } from 'ng-image-slider';
 
 export function tokenGetter() {
   return localStorage.getItem('AUTH');
@@ -50,7 +58,8 @@ export function tokenGetter() {
     AdminLoginComponent,
     AdminComponent,
     DialogEditPropertyComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    DialogNewPropertyComponent
   ],
   imports: [
     BrowserModule,
@@ -76,9 +85,14 @@ export function tokenGetter() {
     MatPaginatorModule,
     MatButtonModule,
     MatDialogModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
+    NgImageSliderModule,
+    MatListModule,
   ],
   providers: [
-    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
+    { provide: BUCKET, useValue: "renting-53ec3.appspot.com" }
   ],
   bootstrap: [AppComponent]
 })
