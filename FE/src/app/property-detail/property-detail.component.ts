@@ -14,7 +14,6 @@ import { AngularFireStorage } from '@angular/fire/storage';
 export class PropertyDetailComponent implements OnInit {
 
   property!: Property;
-  // ADDED
   imageObject: any = [];
   
   constructor(
@@ -40,7 +39,6 @@ export class PropertyDetailComponent implements OnInit {
         .subscribe(url => {
           if (url) {
             imagesUrls.push(url);
-            // ADDED
             that.imageObject.push({
               image: url,
               thumbImage: url

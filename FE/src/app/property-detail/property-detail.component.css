@@ -1,7 +1,11 @@
 .field-name {
-  width: 10em;
+  width: 12rem;
   display: inline-block;
   color: gray;
+}
+
+.field-value {
+  width: 12rem;
 }
 
 .field-name,
@@ -9,10 +13,19 @@
   font-size: 15px;
 }
 
-.card {
-  margin-bottom: 1em
+.property-container {
+  margin: 1.5rem;
 }
 
-.property-container {
-  margin: 1em
+.card-aligned {
+  float: none;
+  margin: 0 auto;
+  margin-bottom: 1rem
+}
+
+.card-button {
+  float: none;
+  margin: 0 auto;
+  width: 50%;
+  margin-top: 1rem;
 }

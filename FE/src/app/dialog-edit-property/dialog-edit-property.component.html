@@ -3,162 +3,128 @@
   <div mat-dialog-content *ngIf="data.property">
     <form [formGroup]="propertyForm" (ngSubmit)="changeData()">
       <div class="form-group">
-        <label class="col-form-label">
-          Nume:
-          <input class="form-control" [(ngModel)]="data.property.name" type="text" formControlName="name">
-        </label>
+        <label for="formName" class="col-form-label">Nume:</label>
+        <input id="formName" class="form-control" [(ngModel)]="data.property.name" type="text" formControlName="name">
       </div>
       <div class="form-group">
-        <label class="col-form-label">
-          Descriere:
-          <input class="form-control" [(ngModel)]="data.property.description" type="text" formControlName="description">
-        </label>
+        <label for="formDesc" class="col-form-label">Descriere:</label>
+        <input id="formDesc" class="form-control" [(ngModel)]="data.property.description" type="text" formControlName="description">
       </div>
       <div class="form-group">
-        <label class="col-form-label">
-          Adresa:
-          <input class="form-control" [(ngModel)]="data.property.address" type="text" formControlName="address">
-        </label>
+        <label for="formAdd" class="col-form-label">Adresa:</label>
+        <input id="formAdd" class="form-control" [(ngModel)]="data.property.address" type="text" formControlName="address">
       </div>
       <div class="form-group">
-        <label class="col-form-label">
-          Tara:
-          <input class="form-control" [(ngModel)]="data.property.country" type="text" formControlName="country">
-        </label>
+        <label for="formCountry" class="col-form-label">Tara:</label>
+        <input id="formCountry" class="form-control" [(ngModel)]="data.property.country" type="text" formControlName="country">
       </div>
       <div class="form-group">
-        <label class="col-form-label">
-          Oras:
-          <input class="form-control" [(ngModel)]="data.property.city" type="text" formControlName="city">
-        </label>
+        <label for="formCity" class="col-form-label">Oras:</label>
+        <input id="formCity" class="form-control" [(ngModel)]="data.property.city" type="text" formControlName="city">
       </div>
       <div class="form-group">
-        <label class="col-form-label">
-          Pret per noapte:
-          <input class="form-control" [(ngModel)]="data.property.pricePerNight" type="text"
-            formControlName="pricePerNight">
-        </label>
+        <label for="formPrice" class="col-form-label">Pret per noapte:</label>
+        <input id="formPrice" class="form-control" [(ngModel)]="data.property.pricePerNight" type="text" formControlName="pricePerNight">
         <div *ngIf="form.pricePerNight.touched && form.pricePerNight.invalid" class="alert alert-danger">
           <div *ngIf="form.pricePerNight.errors?.pattern">Pretul trebuie sa fie numar!</div>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-form-label">
-          Numar adulti:
-          <input class="form-control" [(ngModel)]="data.property.adultsNumber" type="text"
-            formControlName="adultsNumber">
-        </label>
+        <label for="formAdults" class="col-form-label">Numar adulti:</label>
+        <input id="formAdults" class="form-control" [(ngModel)]="data.property.adultsNumber" type="text" formControlName="adultsNumber">
         <div *ngIf="form.adultsNumber.touched && form.adultsNumber.invalid" class="alert alert-danger">
           <div *ngIf="form.adultsNumber.errors?.pattern">Numarul de adulti trebuie sa fie numar!</div>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-form-label">
-          Numar de camere:
-          <input class="form-control" [(ngModel)]="data.property.roomsNumber" type="text" formControlName="roomsNumber">
-        </label>
+        <label for="formRooms" class="col-form-label">Numar de camere:</label>
+        <input id="formRooms" class="form-control" [(ngModel)]="data.property.roomsNumber" type="text" formControlName="roomsNumber">
         <div *ngIf="form.roomsNumber.touched && form.roomsNumber.invalid" class="alert alert-danger">
           <div *ngIf="form.roomsNumber.errors?.pattern">Numarul de camere trebuie sa fie numar!</div>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-form-label">
-          Dimensiune:
-          <input class="form-control" [(ngModel)]="data.property.dimmension" type="text" formControlName="dimmension">
-        </label>
+        <label for="formDim" class="col-form-label">Dimensiune:</label>
+        <input id="formDim" class="form-control" [(ngModel)]="data.property.dimmension" type="text" formControlName="dimmension">
         <div *ngIf="form.dimmension.touched && form.dimmension.invalid" class="alert alert-danger">
           <div *ngIf="form.dimmension.errors?.pattern">Dimensiunea trebuie sa fie numar!</div>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-form-label">
-          Balcon:
-          <span *ngIf="data.property.balcony">Da</span>
-          <span *ngIf="!data.property.balcony">Nu</span>
-          <div class="form-group">
-            <span>Modificati:</span>
-            <select formControlName="balcony">
-              <option value="true">Da</option>
-              <option value="false">Nu</option>
-            </select>
-          </div>
-        </label>
+        <label class="col-form-label">Balcon:</label>
+        <span *ngIf="data.property.balcony">Da</span>
+        <span *ngIf="!data.property.balcony">Nu</span>
+        <div class="form-group">
+          <span>Modificati:</span>
+          <select formControlName="balcony">
+            <option value="true">Da</option>
+            <option value="false">Nu</option>
+          </select>
+        </div>
       </div>
       <div class="form-group">
-        <label class="col-form-label">
-          Baie privata:
-          <span *ngIf="data.property.privateBathroom">Da</span>
-          <span *ngIf="!data.property.privateBathroom">Nu</span>
-          <div class="form-group">
-            <span>Modificati:</span>
-            <select formControlName="privateBathroom">
-              <option value="true">Da</option>
-              <option value="false">Nu</option>
-            </select>
-          </div>
-        </label>
+        <label class="col-form-label">Baie privata:</label>
+        <span *ngIf="data.property.privateBathroom">Da</span>
+        <span *ngIf="!data.property.privateBathroom">Nu</span>
+        <div class="form-group">
+          <span>Modificati:</span>
+          <select formControlName="privateBathroom">
+            <option value="true">Da</option>
+            <option value="false">Nu</option>
+          </select>
+        </div>
       </div>
       <div class="form-group">
-        <label class="col-form-label">
-          A/C:
-          <span *ngIf="data.property.airConditioning">Da</span>
-          <span *ngIf="!data.property.airConditioning">Nu</span>
-          <div class="form-group">
-            <span>Modificati:</span>
-            <select formControlName="airConditioning">
-              <option value="true">Da</option>
-              <option value="false">Nu</option>
-            </select>
-          </div>
-        </label>
+        <label class="col-form-label">A/C:</label>
+        <span *ngIf="data.property.airConditioning">Da</span>
+        <span *ngIf="!data.property.airConditioning">Nu</span>
+        <div class="form-group">
+          <span>Modificati:</span>
+          <select formControlName="airConditioning">
+            <option value="true">Da</option>
+            <option value="false">Nu</option>
+          </select>
+        </div>
       </div>
       <div class="form-group">
-        <label class="col-form-label">
-          Parcare gratuita:
-          <span *ngIf="data.property.freeParking">Da</span>
-          <span *ngIf="!data.property.freeParking">Nu</span>
-          <div class="form-group">
-            <span>Modificati:</span>
-            <select formControlName="freeParking">
-              <option value="true">Da</option>
-              <option value="false">Nu</option>
-            </select>
-          </div>
-        </label>
+        <label class="col-form-label">Parcare gratuita:</label>
+        <span *ngIf="data.property.freeParking">Da</span>
+        <span *ngIf="!data.property.freeParking">Nu</span>
+        <div class="form-group">
+          <span>Modificati:</span>
+          <select formControlName="freeParking">
+            <option value="true">Da</option>
+            <option value="false">Nu</option>
+          </select>
+        </div>
       </div>
       <div class="form-group">
-        <label class="col-form-label">
-          Mic dejun inclus:
-          <span *ngIf="data.property.breakfastIncluded">Da</span>
-          <span *ngIf="!data.property.breakfastIncluded">Nu</span>
-          <div class="form-group">
-            <span>Modificati:</span>
-            <select formControlName="breakfastIncluded">
-              <option value="true">Da</option>
-              <option value="false">Nu</option>
-            </select>
-          </div>
-        </label>
+        <label class="col-form-label">Mic dejun inclus:</label>
+        <span *ngIf="data.property.breakfastIncluded">Da</span>
+        <span *ngIf="!data.property.breakfastIncluded">Nu</span>
+        <div class="form-group">
+          <span>Modificati:</span>
+          <select formControlName="breakfastIncluded">
+            <option value="true">Da</option>
+            <option value="false">Nu</option>
+          </select>
+        </div>
       </div>
       <div class="form-group">
-        <label class="col-form-label">
-          Acceptare animale:
-          <span *ngIf="data.property.petsAllowed">Da</span>
-          <span *ngIf="!data.property.petsAllowed">Nu</span>
-          <div class="form-group">
-            <span>Modificati:</span>
-            <select formControlName="petsAllowed">
-              <option value="true">Da</option>
-              <option value="false">Nu</option>
-            </select>
-          </div>
-        </label>
+        <label class="col-form-label">Acceptare animale:</label>
+        <span *ngIf="data.property.petsAllowed">Da</span>
+        <span *ngIf="!data.property.petsAllowed">Nu</span>
+        <div class="form-group">
+          <span>Modificati:</span>
+          <select formControlName="petsAllowed">
+            <option value="true">Da</option>
+            <option value="false">Nu</option>
+          </select>
+        </div>
       </div>
       <div class="form-group">
-        <label class="col-form-label">
-          Distanta fata de centru(aprox.):
-          <input class="form-control" [(ngModel)]="data.property.distanceFromCenter" type="text" formControlName="distanceFromCenter">
-        </label>
+        <label class="col-form-label">Distanta fata de centru(aprox.):</label>
+        <input class="form-control" [(ngModel)]="data.property.distanceFromCenter" type="text" formControlName="distanceFromCenter">
         <div *ngIf="form.distanceFromCenter.touched && form.distanceFromCenter.invalid" class="alert alert-danger">
           <div *ngIf="form.distanceFromCenter.errors?.pattern">Distanta trebuie sa fie numar!</div>
         </div>
@@ -167,8 +133,8 @@
         <label class="col-form-label">
           Imagini actuale:
           <mat-selection-list #imagesPaths (selectionChange)="onChange(imagesPaths.selectedOptions.selected)">
-            <mat-list-option *ngFor="let imagePath of data.property.imagesPaths" [value]="imagePath" selected>
-              <img style="width:48px;" [src]="imagesUrls[imagePath]" />
+            <mat-list-option class="edit-option" *ngFor="let imagePath of data.property.imagesPaths" [value]="imagePath" selected>
+              <img class="edit-image" [src]="imagesUrls[imagePath]" />
             </mat-list-option>
           </mat-selection-list>
         </label>
