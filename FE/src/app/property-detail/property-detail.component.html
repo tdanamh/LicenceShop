@@ -1,62 +1,43 @@
 <app-navbar></app-navbar>
 <div *ngIf="property" class="property-container">
-  <div class="card col-sm-9">
+  <div class="card col-sm-9 card-aligned">
     <div class="card-header">
-      <span class="card-title">Images</span>
-      <!-- <div *ngFor="let path of property.imagesPaths">
-        <img style="width:480px;" [src]="path" />
-      </div> -->
+      <span class="field-name">Imagini</span>
       <ng-image-slider *ngIf="imageObject" [images]="imageObject" #nav></ng-image-slider>
     </div>
     <div class="card-body">
     </div>
   </div>
-  <div class="card col-sm-9">
+  <div class="card col-sm-9 card-aligned">
     <div class="card-header">
       <span class="card-title">{{ property.name | uppercase }}</span>
     </div>
     <div class="card-body">
-      <h3 class="card-subtitle mb-2 text-muted">{{ property.description }}</h3>
       <p class="card-text">
-        <span class="field-name">Adresa:</span>
-        <span class="field-value">{{property.address}}&nbsp; {{property.city}}</span>
+        <span class="field-name">Descriere:</span>
+        <span class="field-value">{{ property.description }}</span>
       </p>
       <p class="card-text">
-        <span class="field-name">Evaluari:</span>
-        <span class="field-value">{{ property.score }}</span>
+        <span class="field-name">Adresa:</span>
+        <span class="field-value">{{ property.address }}&nbsp;| {{ property.city }}</span>
       </p>
       <p class="card-text">
         <span class="field-name">Tara:</span>
         <span class="field-value">{{ property.country }}</span>
       </p>
       <p class="card-text">
-        <span class="field-name">$</span>
+        <span class="field-name">Distanta fata de centru:</span>
+        <span class="field-value">{{ property.distanceFromCenter }} km</span>
+      </p>
+      <p class="card-text">
+        <span class="field-name">Pret per noapte</span>
         <span class="field-value">{{ property.pricePerNight | currency}}</span>
       </p>
-      <!-- 
-      <h4>Pret per noapte {{ property.pricePerNight }}</h4>
-      <h4>Numar adulti {{ property.adultsNumber }}</h4>
-      <h4>Numar camere {{ property.roomsNumber }}</h4>
-      <h4>Dimensiune {{ property.dimmension }} m2</h4>
-      <h4>Distanta fata de centru {{ property.distanceFromCenter }} m</h4>
-      <h4 *ngIf="property.balcony==true">Balcon Da</h4>
-      <h4 *ngIf="property.balcony==false">Balcon Nu</h4>
-      <h4 *ngIf="property.privateBathroom==true">Baie privata Da</h4>
-      <h4 *ngIf="property.privateBathroom==false">Baie privata Nu</h4>
-      <h4 *ngIf="property.airConditioning==true">Aer conditionat Da</h4>
-      <h4 *ngIf="property.airConditioning==false">Aer conditionat Nu</h4>
-      <h4 *ngIf="property.freeParking==true">Parcare gratuita Da</h4>
-      <h4 *ngIf="property.freeParking==false">Parcare gratuita Nu</h4>
-      <h4 *ngIf="property.breakfastIncluded==true">Mic dejun inclus Da</h4>
-      <h4 *ngIf="property.breakfastIncluded==false">Mic dejun inclus Nu</h4>
-      <h4 *ngIf="property.petsAllowed==true">Acceptare animale de companie Da</h4>
-      <h4 *ngIf="property.petsAllowed==false">Acceptare animale de companie Nu</h4>
-      <button routerLink="/bookProperty/{{property._id}}" type="button" class="btn btn-primary">Rezerva acum!</button> -->
     </div>
   </div>
-  <div class="card col-sm-9">
+  <div class="card col-sm-9 card-aligned">
     <div class="card-header">
-      <span class="card-title">Facilities</span>
+      <span class="card-title">Facilitati</span>
     </div>
     <div class="card-body">
       <p class="card-text">
@@ -77,19 +58,49 @@
       </p>
       <p class="card-text">
         <span class="field-name">Balcon:</span>
-        <span class="field-value">{{ property.balcony }}</span>
+        <span class="field-value">
+          <span *ngIf="property.balcony">Da</span>
+          <span *ngIf="!property.balcony">Nu</span>
+        </span>
       </p>
-      <!-- <h4 *ngIf="property.privateBathroom==true">Baie privata Da</h4>
-      <h4 *ngIf="property.privateBathroom==false">Baie privata Nu</h4>
-      <h4 *ngIf="property.airConditioning==true">Aer conditionat Da</h4>
-      <h4 *ngIf="property.airConditioning==false">Aer conditionat Nu</h4>
-      <h4 *ngIf="property.freeParking==true">Parcare gratuita Da</h4>
-      <h4 *ngIf="property.freeParking==false">Parcare gratuita Nu</h4>
-      <h4 *ngIf="property.breakfastIncluded==true">Mic dejun inclus Da</h4>
-      <h4 *ngIf="property.breakfastIncluded==false">Mic dejun inclus Nu</h4>
-      <h4 *ngIf="property.petsAllowed==true">Acceptare animale de companie Da</h4>
-      <h4 *ngIf="property.petsAllowed==false">Acceptare animale de companie Nu</h4> -->
+      <p class="card-text">
+        <span class="field-name">Baie privata:</span>
+        <span class="field-value">
+          <span *ngIf="property.privateBathroom">Da</span>
+          <span *ngIf="!property.privateBathroom">Nu</span>
+        </span>
+      </p>
+      <p class="card-text">
+        <span class="field-name">A/C:</span>
+        <span class="field-value">
+          <span *ngIf="property.airConditioning">Da</span>
+          <span *ngIf="!property.airConditioning">Nu</span>
+        </span>
+      </p>
+      <p class="card-text">
+        <span class="field-name">Parcare gratuita:</span>
+        <span class="field-value">
+          <span *ngIf="property.freeParking">Da</span>
+          <span *ngIf="!property.freeParking">Nu</span>
+        </span>
+      </p>
+      <p class="card-text">
+        <span class="field-name">Mic dejun inclus:</span>
+        <span class="field-value">
+          <span *ngIf="property.breakfastIncluded">Da</span>
+          <span *ngIf="!property.breakfastIncluded">Nu</span>
+        </span>
+      </p>
+      <p class="card-text">
+        <span class="field-name">Accepta animale de companie:</span>
+        <span class="field-value">
+          <span *ngIf="property.petsAllowed">Da</span>
+          <span *ngIf="!property.petsAllowed">Nu</span>
+        </span>
+      </p>
     </div>
   </div>
-  <button routerLink="/bookProperty/{{property._id}}" type="button" class="btn btn-primary">Rezerva</button>
+  <div class="card col-sm-9 card-button">
+    <button routerLink="/bookProperty/{{property._id}}" type="button" class="btn btn-primary">Rezerva</button>
+  </div>
 </div>

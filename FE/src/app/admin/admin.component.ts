@@ -173,7 +173,9 @@ export class AdminComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogEditPropertyComponent, {
       data: {
         property: property
-      }
+      },
+      // height: '100%',
+      width: '100%'
     });
     dialogRef.afterClosed()
     .subscribe(result => {

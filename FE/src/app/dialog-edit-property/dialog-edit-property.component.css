@@ -1,7 +1,17 @@
-#image-path {
-  margin-left: 0.5rem;
-}
-
 .file-input {
   display: none;
+}
+
+.edit-option {
+  margin-bottom: 1rem;
+}
+
+.edit-image {
+  margin-left: 0.5rem;
+  width: 48px;
+  height: 48px;
+}
+.edit-property-container {
+  margin: 2 auto;
+
 }
