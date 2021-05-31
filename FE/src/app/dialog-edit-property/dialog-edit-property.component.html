@@ -2,7 +2,7 @@
   <h2 mat-dialog-title>Editare proprietate</h2>
   <div mat-dialog-content *ngIf="data.property">
     <form [formGroup]="propertyForm" (ngSubmit)="changeData()">
-      <div class="form-group">
+      <div class="form-group w-50">
         <label for="formName" class="col-form-label">Nume:</label>
         <input id="formName" class="form-control" [(ngModel)]="data.property.name" type="text" formControlName="name">
       </div>
@@ -10,40 +10,40 @@
         <label for="formDesc" class="col-form-label">Descriere:</label>
         <input id="formDesc" class="form-control" [(ngModel)]="data.property.description" type="text" formControlName="description">
       </div>
-      <div class="form-group">
+      <div class="form-group w-50">
         <label for="formAdd" class="col-form-label">Adresa:</label>
         <input id="formAdd" class="form-control" [(ngModel)]="data.property.address" type="text" formControlName="address">
       </div>
-      <div class="form-group">
+      <div class="form-group w-50">
         <label for="formCountry" class="col-form-label">Tara:</label>
         <input id="formCountry" class="form-control" [(ngModel)]="data.property.country" type="text" formControlName="country">
       </div>
-      <div class="form-group">
+      <div class="form-group w-50">
         <label for="formCity" class="col-form-label">Oras:</label>
         <input id="formCity" class="form-control" [(ngModel)]="data.property.city" type="text" formControlName="city">
       </div>
-      <div class="form-group">
+      <div class="form-group w-25">
         <label for="formPrice" class="col-form-label">Pret per noapte:</label>
         <input id="formPrice" class="form-control" [(ngModel)]="data.property.pricePerNight" type="text" formControlName="pricePerNight">
         <div *ngIf="form.pricePerNight.touched && form.pricePerNight.invalid" class="alert alert-danger">
           <div *ngIf="form.pricePerNight.errors?.pattern">Pretul trebuie sa fie numar!</div>
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group w-25">
         <label for="formAdults" class="col-form-label">Numar adulti:</label>
         <input id="formAdults" class="form-control" [(ngModel)]="data.property.adultsNumber" type="text" formControlName="adultsNumber">
         <div *ngIf="form.adultsNumber.touched && form.adultsNumber.invalid" class="alert alert-danger">
           <div *ngIf="form.adultsNumber.errors?.pattern">Numarul de adulti trebuie sa fie numar!</div>
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group w-25">
         <label for="formRooms" class="col-form-label">Numar de camere:</label>
         <input id="formRooms" class="form-control" [(ngModel)]="data.property.roomsNumber" type="text" formControlName="roomsNumber">
         <div *ngIf="form.roomsNumber.touched && form.roomsNumber.invalid" class="alert alert-danger">
           <div *ngIf="form.roomsNumber.errors?.pattern">Numarul de camere trebuie sa fie numar!</div>
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group w-25">
         <label for="formDim" class="col-form-label">Dimensiune:</label>
         <input id="formDim" class="form-control" [(ngModel)]="data.property.dimmension" type="text" formControlName="dimmension">
         <div *ngIf="form.dimmension.touched && form.dimmension.invalid" class="alert alert-danger">
@@ -122,7 +122,7 @@
           </select>
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group w-25">
         <label class="col-form-label">Distanta fata de centru(aprox.):</label>
         <input class="form-control" [(ngModel)]="data.property.distanceFromCenter" type="text" formControlName="distanceFromCenter">
         <div *ngIf="form.distanceFromCenter.touched && form.distanceFromCenter.invalid" class="alert alert-danger">

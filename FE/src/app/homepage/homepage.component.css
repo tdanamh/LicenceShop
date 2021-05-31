@@ -1,0 +1,33 @@
+.homepage-container {
+  /* padding: 2rem; */
+  margin: auto;
+}
+
+.carousel-container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.search-button {
+  margin-top: 2rem;
+}
+
+.signup-container {
+  background-color: #f4f5f7;
+  margin-top: 3rem;
+  width: 100%;
+  text-align: center;
+}
+
+.register-button {
+  margin-bottom: 1rem;
+}
+
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus {
+  background-color: #9574ff;
+  border-color: #9574ff;
+}
