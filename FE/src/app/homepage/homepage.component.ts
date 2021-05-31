@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-homepage',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
   
+  searchForm = new FormGroup({
+    inputText: new FormControl('')
+  });
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  searchInputText(): void {
+    console.log('aaa');
+  }
 }

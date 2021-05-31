@@ -39,6 +39,7 @@ import { AngularFireStorageModule, BUCKET } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 
 import { NgImageSliderModule } from 'ng-image-slider';
+import { CopyrightNavbarComponent } from './copyright-navbar/copyright-navbar.component';
 
 export function tokenGetter() {
   return localStorage.getItem('AUTH');
@@ -59,7 +60,8 @@ export function tokenGetter() {
     AdminComponent,
     DialogEditPropertyComponent,
     ResetPasswordComponent,
-    DialogNewPropertyComponent
+    DialogNewPropertyComponent,
+    CopyrightNavbarComponent
   ],
   imports: [
     BrowserModule,
