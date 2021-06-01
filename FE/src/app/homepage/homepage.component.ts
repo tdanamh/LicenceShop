@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-homepage',
@@ -12,12 +13,15 @@ export class HomepageComponent implements OnInit {
     inputText: new FormControl('')
   });
 
-  constructor() { }
+  constructor(
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
   }
 
   searchInputText(): void {
-    console.log('aaa');
+    let value = this.searchForm.value.inputText;
+    this.router.navigateByUrl('/properties?city=' + value);
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { Property } from '../property';
 import { PropertyService } from '../property/property.service';
@@ -23,7 +24,10 @@ export class PropertiesComponent implements OnInit {
     this.getProperties();
   }
 
-  constructor(private propertyService: PropertyService) { }
+  constructor(
+    private propertyService: PropertyService,
+    private route: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
     this.getProperties();
@@ -32,9 +36,22 @@ export class PropertiesComponent implements OnInit {
   getProperties(): void {
     let that = this;
 
+    let searchedCity = "";
+
+    // Get city from url
+    this.route.queryParams.subscribe(params => {
+      searchedCity = params['city'];
+    });
+
     this.propertyService.getProperties()
     .subscribe(properties => {
       properties.forEach(function(property, index) {
+        // Filter by city from url
+        if (searchedCity) {
+          properties = properties.filter(property => property.city.toLowerCase().includes(searchedCity.toLowerCase()));
+        }
+
+        // Filter by selected filters
         if (that.filters['airConditioning']) {
           let isACtrue = (that.filters['airConditioning'] === 'true')
           properties = properties.filter(property => property.airConditioning == isACtrue)
@@ -55,9 +72,9 @@ export class PropertiesComponent implements OnInit {
           let isBreakfastTrue = (that.filters['breakfastIncluded'] === 'true')
           properties = properties.filter(property => property.breakfastIncluded == isBreakfastTrue)
         }
-        // Filter rooms number, adults number
-        // Filter by city
+        // TODO: Filter rooms number, adults number
       })
+      
       this.properties = properties;
     });
   }
