@@ -8,8 +8,12 @@
   margin-bottom: 2rem;
 }
 
+.search-container {
+  margin-top: 3rem;
+}
+
 .search-button {
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .signup-container {
