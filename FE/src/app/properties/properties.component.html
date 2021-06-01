@@ -1,21 +1,66 @@
 <app-navbar></app-navbar>
-<div class="row property-container" *ngFor="let property of properties">
-  <div class="col-12">
-    <div class="card">
-      <div class="card-body">
-        <div class="avatar"></div>
-        <div class="property-info">
-          <span class="property-name"><a [routerLink]= [property._id] class="card-title">{{property.name}}</a></span>
-          <div class="property-highlights">
-            <div class="property-highlight">
-              <li *ngIf="property.airConditioning">A/C</li>
+<div class="container">
+  <div class="navbar-container">
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <form class="filter-form">
+          <label for="airConditioning">A/C</label>
+          <select id="airConditioning" class="form-select" aria-label="Default select example" (change)="reloadProducts($event)">
+            <option value="" selected>---</option>
+            <option value="airConditioning=true">Da</option>
+            <option value="airConditioning=false">Nu</option>
+          </select>
+          <label for="balcony">Balcon</label>
+          <select id="balcony" class="form-select" aria-label="Default select example" (change)="reloadProducts($event)">
+            <option value="" selected>---</option>
+            <option value="balcony=true">Da</option>
+            <option value="balcony=false">Nu</option>
+          </select>
+          <label for="privateBathroom">Baie privata</label>
+          <select id="privateBathroom" class="form-select" aria-label="Default select example" (change)="reloadProducts($event)">
+            <option value="" selected>---</option>
+            <option value="privateBathroom=true">Da</option>
+            <option value="privateBathroom=false">Nu</option>
+          </select>
+          <label for="freeParking">Parcare gratuita</label>
+          <select id="freeParking" class="form-select" aria-label="Default select example" (change)="reloadProducts($event)">
+            <option value="" selected>---</option>
+            <option value="freeParking=true">Da</option>
+            <option value="freeParking=false">Nu</option>
+          </select>
+          <label for="breakfastIncluded">Mic dejun inclus</label>
+          <select id="breakfastIncluded" class="form-select" aria-label="Default select example" (change)="reloadProducts($event)">
+            <option value="" selected>---</option>
+            <option value="breakfastIncluded=true">Da</option>
+            <option value="breakfastIncluded=false">Nu</option>
+          </select>
+        </form>
+      </div>
+    </nav>
+  </div>
+  <div class="row filter-container">
+    <div class="col-12">
+      <div class="row property-container" *ngFor="let property of properties">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="avatar"></div>
+              <div class="property-info">
+                <span class="property-name"><a [routerLink]=[property._id]
+                    class="card-title">{{property.name}}</a></span>
+                <div class="property-highlights">
+                  <div class="property-highlight">
+                    <li *ngIf="property.airConditioning">A/C</li>
+                  </div>
+                </div>
+                <p class="card-text">{{property.description}}</p>
+              </div>
+            </div>
+            <div class="card-body property-price">
+              <p>{{property.pricePerNight | currency}}/noapte</p>
             </div>
           </div>
-          <p class="card-text">{{property.description}}</p>
         </div>
-      </div>
-      <div class="card-body property-price">
-        <p>{{property.pricePerNight | currency}}/noapte</p>
       </div>
     </div>
   </div>
