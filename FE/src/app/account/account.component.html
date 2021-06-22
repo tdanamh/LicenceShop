@@ -1,40 +1,42 @@
 <app-navbar></app-navbar>
 <div *ngIf="user" class="account-container">
-  <div class="card">
-    <div class="card-body">
-      <h2>Profilul meu</h2>
-      <h3 class="card-subtitle">{{ user.firstName | uppercase }} {{ user.lastName | uppercase }}</h3>
-      <div>
-        <span>Email: {{ user.email }}</span>
-      </div>
-      <button (click)="toggleMyBookings()" class="btn btn-light">Rezervarile mele</button>
-      <form [formGroup]="userDataForm" (ngSubmit)="changeData()">
-        <div class="form-group">
-          <label class="col-form-label">
-            Prenume:
-            <input class="form-control" [(ngModel)]="user.firstName" type="text" formControlName="firstName">
-          </label>
+  <div class="row justify-content-center">
+    <div class="card account-card">
+      <div class="card-body">
+        <h2>Profilul meu</h2>
+        <h3 class="card-subtitle">{{ user.firstName | uppercase }} {{ user.lastName | uppercase }}</h3>
+        <div>
+          <span>Email: {{ user.email }}</span>
         </div>
-        <div class="form-group">
-          <label class="col-form-label">
-            Nume:
-            <input class="form-control" [(ngModel)]="user.lastName" type="text" formControlName="lastName">
-          </label>
-        </div>
-        <button type="submit" class="btn btn-success">Actualizeaza date</button>
-      </form>
-      <button class="btn btn-danger" (click)="logOut()">Iesi din cont</button>
-
-      <div *ngIf="loadMyBookings" class="my-bookings-container">
-        <div *ngIf="myBookings.length == 0">
-          <h2>Nu aveti rezervari inca!</h2>
-        </div>
-        <div *ngFor="let booking of myBookings" class="card">
-          <div class="card-body">
-            <h2>Rezervarea cu id-ul {{ booking._id }}</h2>
-            <h2>Proprietatea {{ booking.propertyId.name }}</h2>
-            <h2>Data de start {{ booking.startDate | date: 'dd/MM/yyyy'}}</h2>
-            <h2>Data de incheiere {{ booking.endDate | date: 'dd/MM/yyyy'}}</h2>
+        <button (click)="toggleMyBookings()" class="btn bookings-button">Rezervarile mele</button>
+        <form [formGroup]="userDataForm" (ngSubmit)="changeData()">
+          <div class="form-group">
+            <label class="col-form-label">
+              Prenume:
+              <input class="form-control" [(ngModel)]="user.firstName" type="text" formControlName="firstName">
+            </label>
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">
+              Nume:
+              <input class="form-control" [(ngModel)]="user.lastName" type="text" formControlName="lastName">
+            </label>
+          </div>
+          <button type="submit" class="btn update-button">Actualizeaza date</button>
+        </form>
+        <button class="btn btn-danger logout-button" (click)="logOut()">Iesi din cont</button>
+  
+        <div *ngIf="loadMyBookings" class="my-bookings-container">
+          <div *ngIf="myBookings.length == 0">
+            <h2>Nu aveti rezervari inca!</h2>
+          </div>
+          <div *ngFor="let booking of myBookings" class="card booking">
+            <div class="card-body">
+              <h4>Rezervarea cu id-ul {{ booking._id | slice: -4}}</h4>
+              <h4>Proprietatea {{ booking.propertyId.name }}</h4>
+              <h4>Data de start {{ booking.startDate | date: 'dd/MM/yyyy'}}</h4>
+              <h4>Data de incheiere {{ booking.endDate | date: 'dd/MM/yyyy'}}</h4>
+            </div>
           </div>
         </div>
       </div>

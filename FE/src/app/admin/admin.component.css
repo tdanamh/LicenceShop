@@ -18,6 +18,7 @@
 
 .heading-container {
   display: flex;
+  margin-bottom: 2rem;
 }
 
 .new-property-image {

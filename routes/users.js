@@ -59,13 +59,13 @@ router.post('/', function(req, res) {
           lastName: newUser.lastName,
           isAdmin: newUser.isAdmin
         }, jwtKey, { expiresIn: "1h" });
-        // mailerTransporter.sendMail(mailDetails, function(err, info) {
-        //   if (err) {
-        //     console.log(err);
-        //   } else {
-        //     console.log(info);
-        //   }
-        // });
+        mailerTransporter.sendMail(mailDetails, function(err, info) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(info);
+          }
+        });
         res.status(200).json({ token: token, message: 'Cont creat cu succes!' })
       })
       .catch(err => res.status(500).json({ error: err, message: 'Contul nu a putut fi creat!' }));
