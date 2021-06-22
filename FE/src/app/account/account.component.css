@@ -2,3 +2,42 @@
   padding: 2rem;
   margin: auto;
 }
+
+.account-card {
+  width: 20rem;
+}
+
+.card-body {
+  text-align: center;
+}
+
+.bookings-button,
+.bookings-button:hover,
+.bookings-button:active,
+.bookings-button:visited,
+.bookings-button:focus {
+  background-color: #9574ff7d;
+  border-color: #9574ff;
+  
+}
+
+.update-button,
+.update-button:hover,
+.update-button:active,
+.update-button:visited,
+.update-button:focus {
+  background-color: #9574ff7d;
+  border-color: #9574ff;
+}
+
+.logout-button {
+  margin-top: 1rem;
+}
+
+.my-bookings-container {
+  margin-top: 2rem;
+}
+
+.booking {
+  margin-bottom: 1rem;
+}

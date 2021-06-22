@@ -28,7 +28,7 @@ export class AdminComponent implements OnInit {
 
   displayedColumnsUsers: string[] = ['email', 'firstName', 'lastName', 'isAdmin', 'action'];
   displayedColumnsProperties: string[] = ['name', 'address', 'country', 'city', 'action'];
-  displayedColumnsBookings: string[] = ['userId', 'propertyId', 'propertyName', 'startDate', 'endDate', 'status'];
+  displayedColumnsBookings: string[] = ['userId', 'propertyId', 'propertyName', 'startDate', 'endDate'];
 
   constructor(
     private http: HttpClient,
@@ -37,8 +37,7 @@ export class AdminComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.populateUsers();
-    this.populateProperties();
+    this.populateUsers();
   }
 
   applyFilter(event: Event, object: string) {
