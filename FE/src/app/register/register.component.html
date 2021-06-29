@@ -19,6 +19,7 @@
       </label>
       <div *ngIf="form.password.touched && form.password.invalid" class="alert alert-danger">
         <div *ngIf="form.password.errors?.required">Parola trebuie completata!</div>
+        <div *ngIf="form.password.errors?.pattern">Parola trebuie sa aiba minim 6 caractere, sa contina litere mari, litere mici si cifre!</div>
       </div>
     </div>
     <div class="form-group">

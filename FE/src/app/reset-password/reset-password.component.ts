@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 
@@ -13,8 +13,12 @@ import Swal from 'sweetalert2';
 export class ResetPasswordComponent implements OnInit {
   
   resetForm = new FormGroup({
-    email: new FormControl('')
+    email: new FormControl('', [Validators.required, Validators.email])
   })
+
+  get form() {
+    return this.resetForm.controls;
+  }
 
   constructor(
     private dialog: MatDialog,
