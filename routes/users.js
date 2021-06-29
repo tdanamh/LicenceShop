@@ -106,7 +106,12 @@ router.delete('/:id', adminCheckAuthentication, function(req, res) {
       return res.status(404).json({ message: 'Utilizator inexistent!' });
     }
     user.remove()
-    .then( () => res.status(200).json({ message: 'Utilizator sters!' }))
+    .then( () =>  {
+      if (user.isAdmin) {
+        return res.status(200).json({ message: 'Utilizator sters!', isAdmin: true })
+      }
+      return res.status(200).json({ message: 'Utilizator sters!' })
+    })
     .catch(err => res.status(500).json({ error: err }));
   })
   .catch(err => res.status(500).json({ error: err }));

@@ -1,6 +1,13 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const checkAuthentication = require('../middleware/check-authentication');
+const nodemailer = require('nodemailer');
+const mailerService = require('../config/mailer-keys').service;
+const mailerAuth = require('../config/mailer-keys').auth;
+const mailerTransporter = nodemailer.createTransport({
+  service: mailerService,
+  auth: mailerAuth
+});
 
 const router = express.Router();
 
@@ -35,6 +42,16 @@ router.post('/', checkAuthentication, function(req, res) {
   let inputStartDate = new Date(startDate);
   let inputEndDate = new Date(endDate);
 
+  const email = decoded.email;
+  let emailSD = inputStartDate.toLocaleString().split(',')[0];
+  let emailED = inputEndDate.toLocaleString().split(',')[0];
+  const mailDetails = {
+    from: 'Renting Units <renting.units@gmail.com>',
+    to: email,
+    subject: 'Inregistrare rezervare',
+    text: 'A fost creata o rezervare pe platforma Renting! Data de start: ' + emailSD + ', data de incheiere: ' + emailED + '. Plata se va face cash dupa dorinta proprietarului, in functie de indicatiile sale. Multumim pentru folosirea platformei Renting!'
+  };
+
   BookProperty.find({ propertyId: propertyId })
   .exec()
   .then(bookProperties => {
@@ -56,6 +73,13 @@ router.post('/', checkAuthentication, function(req, res) {
     if (!ok) {
       return res.status(409).json({ message: 'Exista deja o rezervare cu aceste date!' });
     }
+    mailerTransporter.sendMail(mailDetails, function(err, info) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(info);
+      }
+    });
     const newBookProperty = new BookProperty({
       userId: userId,
       propertyId: propertyId,
