@@ -2,7 +2,7 @@
 <div class="homepage-container">
   <div class="carousel-container container">
     <div class="row justify-content-center">
-      <div class="col-6">
+      <div class="col-12 col-lg-6">
         <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="2500">
           <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -38,7 +38,7 @@
   </div>
   <div class="search-container container">
     <div class="row justify-content-center">
-      <form class="w-50 col-3" [formGroup]="searchForm" (ngSubmit)="searchInputText()">
+      <form class="col-12 col-lg-6" [formGroup]="searchForm" (ngSubmit)="searchInputText()">
         <div class="form-group">
           <input class="form-control search-input" placeholder="In ce oras ai vrea sa mergi?" type="text" formControlName="inputText">
         </div>

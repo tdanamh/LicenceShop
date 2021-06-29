@@ -34,10 +34,15 @@ export class AccountComponent implements OnInit {
     this.http.get<any>('/api/users/current-user')
     .subscribe(
       data => {
-        this.user = data.currentUser;
+        if (data.currentUser) {
+          this.user = data.currentUser;
+        } else {
+          localStorage.setItem('AUTH', '');
+          this.router.navigateByUrl('/login');
+        }
       },
       err => {
-        console.log(err);
+        console.log(err); 
       }
     )
     this.http.get<any>('/api/bookProperty/byUserId')

@@ -11,6 +11,10 @@
   margin-top: 3rem; 
 }
 
+.carousel-item img {
+  width: 100%;
+}
+
 .search-button {
   margin-top: 1rem;
 }
@@ -20,6 +24,7 @@
   margin-top: 3rem;
   width: 100%;
   text-align: center;
+  padding: 20px 0 10px;
 }
 
 .register-button {

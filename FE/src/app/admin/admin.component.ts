@@ -97,6 +97,11 @@ export class AdminComponent implements OnInit {
               focusConfirm: true,
               confirmButtonText: 'OK'
             });
+            // check if deleted user is admin
+            if (data.isAdmin) {
+              localStorage.setItem('AUTH', '');
+              this.router.navigateByUrl('/admin-login');
+            }
             this.populateUsers();
           },
           err => {

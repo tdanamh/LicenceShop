@@ -9,7 +9,7 @@
       <h4 class="card-text text-muted">Adresa {{ property.address }}</h4>
       <h4 class="card-text text-muted">Tara {{ property.country }}</h4>
       <h4 class="card-text text-muted">Oras {{ property.city }}</h4>
-      <h4 class="card-text text-muted">Pret per noapte {{ property.pricePerNight }}</h4>
+      <h4 class="card-text text-muted">Pret per noapte {{ property.pricePerNight | currency }}</h4>
       <div class="my-date-picker">
         <form [formGroup]="range" (ngSubmit)="onSubmit()">
           <div class="form-group">
